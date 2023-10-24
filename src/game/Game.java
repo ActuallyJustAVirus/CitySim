@@ -24,13 +24,25 @@ public class Game {
         registry.register("bye", cmdExit);
         registry.register("go", new CommandGo());
         registry.register("help", new CommandHelp(registry));
+        // example of anonymous class
+        registry.register("duck", new Command() {
+            @Override
+            public void execute(Context context, String command, String[] parameters) {
+                System.out.println("🦆");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Prints a duck";
+            }
+        });
     }
 
     public static void main(String args[]) {
         System.out.println("Welcome to the World of Zuul!");
 
         initRegistry();
-        context.getCurrent().welcome();
+        context.getCurrentSpace().welcome();
 
         while (context.isDone() == false) {
             System.out.print("> ");

@@ -2,7 +2,7 @@ package commands;
 /* Baseclass for commands
  */
 
-public class BaseCommand {
+public abstract class BaseCommand implements Command {
     String description = "Undocumented";
 
     protected boolean guardEq(String[] parameters, int bound) {

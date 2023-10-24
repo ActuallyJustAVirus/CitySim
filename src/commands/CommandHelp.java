@@ -7,7 +7,7 @@ import java.util.Arrays;
 import game.Context;
 import game.Registry;
 
-public class CommandHelp extends BaseCommand implements Command {
+public class CommandHelp extends BaseCommand {
     Registry registry;
 
     public CommandHelp(Registry registry) {
@@ -24,8 +24,9 @@ public class CommandHelp extends BaseCommand implements Command {
         int max = 0;
         for (String commandName : commandNames) {
             int length = commandName.length();
-            if (length > max)
+            if (length > max) {
                 max = length;
+            }
         }
 
         // present list of commands

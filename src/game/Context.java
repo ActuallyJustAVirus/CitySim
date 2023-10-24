@@ -3,26 +3,26 @@ package game;
  */
 
 public class Context {
-    Space current;
+    Space currentSpace;
     boolean done = false;
 
     Context(Space node) {
-        current = node;
+        currentSpace = node;
     }
 
-    public Space getCurrent() {
-        return current;
+    public Space getCurrentSpace() {
+        return currentSpace;
     }
 
     public void transition(String direction) {
-        Space next = current.followEdge(direction);
+        Space next = currentSpace.followEdge(direction);
         if (next == null) {
             System.out.println("You are confused, and walk in a circle looking for '" + direction
                     + "'. In the end you give up 😩");
         } else {
-            current.goodbye();
-            current = next;
-            current.welcome();
+            currentSpace.goodbye();
+            currentSpace = next;
+            currentSpace.welcome();
         }
     }
 

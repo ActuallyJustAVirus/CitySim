@@ -4,7 +4,7 @@ package commands;
 
 import game.Context;
 
-public class CommandGo extends BaseCommand implements Command {
+public class CommandGo extends BaseCommand {
     public CommandGo() {
         description = "Follow an exit";
     }
