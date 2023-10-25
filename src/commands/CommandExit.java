@@ -4,6 +4,9 @@ package commands;
 
 import game.Context;
 
+/**
+ * slutter spillet
+ */
 public class CommandExit extends BaseCommand {
     @Override
     public void execute(Context context, String command, String parameters[]) {

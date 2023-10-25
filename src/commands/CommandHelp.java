@@ -7,6 +7,9 @@ import java.util.Arrays;
 import game.Context;
 import game.Registry;
 
+/**
+ * CommandHelp er til at vise en hjælpe besked
+ */
 public class CommandHelp extends BaseCommand {
     Registry registry;
 

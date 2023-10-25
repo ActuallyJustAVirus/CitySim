@@ -10,6 +10,9 @@ import commands.CommandGo;
 import commands.CommandHelp;
 import commands.CommandUnknown;
 
+/**
+ * Game class er til få at starte spillet
+ */
 public class Game {
     static World world = new World();
     static Context context = new Context(world.getEntry());
@@ -17,6 +20,10 @@ public class Game {
     static Registry registry = new Registry(context, fallback);
     static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * initRegistry (initialiserer registret)
+     * laver alle commands og registrerer dem så de kan bruges.
+     */
     private static void initRegistry() {
         Command cmdExit = new CommandExit();
         registry.register("exit", cmdExit);

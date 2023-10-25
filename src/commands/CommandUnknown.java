@@ -4,6 +4,9 @@ package commands;
 
 import game.Context;
 
+/**
+ * bruges til at håndtere ukendte kommandoer
+ */
 public class CommandUnknown extends BaseCommand {
     @Override
     public void execute(Context context, String command, String parameters[]) {
