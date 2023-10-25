@@ -6,20 +6,20 @@ class World {
     Space entry;
 
     World() {
-        Space entry = new Space("Entry");
-        Space corridor = new Space("Corridor");
-        Space cave = new Space("Cave");
-        Space pit = new Space("Darkest Pit");
-        Space outside = new Space("Outside");
+        Space map = new SpaceMap();
+        Space capital = new Space("Capital");
+        Space city = new Space("City");
+        Space town = new Space("Town");
 
-        entry.addEdge("door", corridor);
-        corridor.addEdge("door", cave);
-        cave.addEdge("north", pit);
-        cave.addEdge("south", outside);
-        pit.addEdge("door", cave);
-        outside.addEdge("door", cave);
+        map.addEdge("Capital", capital);
+        map.addEdge("City", city);
+        map.addEdge("Town", town);
 
-        this.entry = entry;
+        capital.addEdge("Map", map);
+        city.addEdge("Map", map);
+        town.addEdge("Map", map);
+
+        this.entry = map;
     }
 
     Space getEntry() {
