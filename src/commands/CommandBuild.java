@@ -12,7 +12,7 @@ public class CommandBuild extends BaseCommand {
 
     static Scanner scanner = new Scanner(System.in);
 
-    String city2;
+    String cityInput;
     public CommandBuild() {
         description = "Build a road";
     }
@@ -21,12 +21,21 @@ public class CommandBuild extends BaseCommand {
     public void execute(Context context, String command, String[] parameters) {
         Space currentSpace = context.getCurrentSpace();
         if (currentSpace instanceof SpaceCity) {
+
             SpaceCity city = (SpaceCity) currentSpace;
+
             System.out.println("Build a road to: ");
             System.out.print("> ");
-            city2 = scanner.next();
+            cityInput = scanner.next();
+            SpaceCity city2 = (SpaceCity) city.followEdge(cityInput);
 
-            System.out.println("You have built a road from "+ city.getName()+" to "+city2);
+            if (city2 == null){
+                System.out.println("You can't build a road from "+city.getName()+" to "+cityInput);
+                return;
+            }
+
+            Road road = new Road(city,city2);
+            System.out.println("You have built a road from "+ city.getName()+" to "+cityInput);
 
 
             

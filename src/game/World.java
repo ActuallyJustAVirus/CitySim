@@ -7,6 +7,7 @@ import java.util.ArrayList;
 class World {
     Space entry;
     ArrayList<Space> spaces = new ArrayList<Space>();
+    ArrayList<Road> roads = new ArrayList<Road>();
 
     World() {
         Space map = new SpaceMap(this);
@@ -23,6 +24,15 @@ class World {
 
         for (Space space : spaces) {
             space.addEdge("Map", map);
+        }
+
+        for (Space space : spaces) {
+            for (Space space2 : spaces) {
+                if (space == space2){
+                    continue;
+                }
+                space.addEdge(space2.getName(),space2);
+            }
         }
 
         this.entry = map;
