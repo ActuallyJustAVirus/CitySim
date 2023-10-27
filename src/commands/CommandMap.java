@@ -2,11 +2,14 @@ package commands;
 
 import game.Context;
 
-public class CammandMap extends BaseCommand {
+public class CommandMap extends BaseCommand {
+    public CommandMap() {
+        description = "Open the map";
+    }
 
     @Override
     public void execute(Context context, String command, String[] parameters) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
     
