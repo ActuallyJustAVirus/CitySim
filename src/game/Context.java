@@ -42,5 +42,12 @@ public class Context {
         int i = 1000000;
 
         System.out.println(balance+i);
+
+    }
+    public void GetBalance(){
+    System.out.println(balance);
+
     }
 }
+
+
