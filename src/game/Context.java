@@ -33,4 +33,8 @@ public class Context {
     public boolean isDone() {
         return done;
     }
+
+    public void NextTurn (){  /*Method to go to next turn. */
+        System.out.println("´1 month later...");
+    }
 }
