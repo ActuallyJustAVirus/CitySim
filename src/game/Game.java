@@ -9,6 +9,8 @@ import commands.CommandExit;
 import commands.CommandGo;
 import commands.CommandHelp;
 import commands.CommandUnknown;
+import commands.CommandNext;
+import commands.CommandMap;
 
 public class Game {
     static World world = new World();
