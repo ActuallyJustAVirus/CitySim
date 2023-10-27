@@ -4,7 +4,7 @@ package game;
 
 import java.util.Set;
 
-class Space extends Node {
+public class Space extends Node {
     Space(String name) {
         super(name);
     }
