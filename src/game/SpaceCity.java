@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class SpaceCity extends Space {
     public ArrayList<SpaceCity> neighbors = new ArrayList<SpaceCity>();
+    int x, y;
 
-    SpaceCity(String name) {
+    SpaceCity(String name, int x, int y) {
         super(name);
+        this.x = x;
+        this.y = y;
     }
 
     @Override

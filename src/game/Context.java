@@ -6,7 +6,7 @@ public class Context {
     Space currentSpace;
     boolean done = false;
 
-    int balance = 0;
+    int balance = 6969;
 
     Context(Space node) {
         currentSpace = node;
@@ -39,8 +39,15 @@ public class Context {
     public void NextTurn (){  /*Method to go to next turn. */
         System.out.println("´1 month later...");
 
-        int i = 1000000;
+        balance += 123456;
 
-        System.out.println(balance+i);
+        System.out.println("Your new balance is "+balance);
+
+    }
+    public void GetBalance(){
+    System.out.println("Your balance is "+balance);
+
     }
 }
+
+

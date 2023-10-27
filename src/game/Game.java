@@ -4,7 +4,15 @@ package game;
 
 import java.util.Scanner;
 
-import commands.*;
+import commands.Command;
+import commands.CommandBalance;
+import commands.CommandExit;
+import commands.CommandGo;
+import commands.CommandHelp;
+import commands.CommandUnknown;
+import commands.CommandNext;
+import commands.CommandMap;
+import commands.CommandBuild;
 
 public class Game {
     static World world = new World();
@@ -23,6 +31,8 @@ public class Game {
         registry.register("next", new CommandNext());
         registry.register("map", new CommandMap());
         registry.register("build", new CommandBuild());
+        registry.register("bal", new CommandBalance());
+
 
         // example of anonymous class
         registry.register("duck", new Command() {
