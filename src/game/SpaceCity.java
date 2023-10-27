@@ -1,6 +1,9 @@
 package game;
 
+import java.util.ArrayList;
+
 public class SpaceCity extends Space {
+    public ArrayList<SpaceCity> neighbors = new ArrayList<SpaceCity>();
 
     SpaceCity(String name) {
         super(name);
