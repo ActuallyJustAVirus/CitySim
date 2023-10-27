@@ -2,36 +2,40 @@ package game;
 /* World class for modeling the entire in-game world
  */
 
+import java.util.ArrayList;
+
 class World {
     Space entry;
+    ArrayList<Space> spaces = new ArrayList<Space>();
 
     World() {
-        Space map = new SpaceMap();
-        Space capital = new SpaceCity("Capital");
-        Space city = new SpaceCity("City");
-        Space town = new SpaceCity("Town");
-        Space village = new SpaceCity("Village");
-        Space Hamlet= new SpaceCity("Hamlet");
-        Space Locality=new Space("Locality");
+        Space map = new SpaceMap(this);
+        spaces.add(new SpaceCity("Capital", 3, 4));
+        spaces.add(new SpaceCity("City", 2, 3));
+        spaces.add(new SpaceCity("Town", 1, 2));
+        spaces.add(new SpaceCity("Village", 0, 1));
+        spaces.add(new SpaceCity("Hamlet", 0, 0));
+        spaces.add(new SpaceCity("Locality", 1, 1));
 
-        map.addEdge("Capital", capital);
-        map.addEdge("City", city);
-        map.addEdge("Town", town);
-        map.addEdge("Village",village);
-        map.addEdge("Hamlet", Hamlet);
-        map.addEdge("Locality", Locality);
+        for (Space space : spaces) {
+            map.addEdge(space.getName(), space);
+        }
 
-        capital.addEdge("Map", map);
-        city.addEdge("Map", map);
-        town.addEdge("Map", map);
-        village.addEdge("Map",map);
-        Locality.addEdge("map", map);
-        Hamlet.addEdge("map", map);
+        for (Space space : spaces) {
+            space.addEdge("Map", map);
+        }
 
         this.entry = map;
     }
 
     Space getEntry() {
         return entry;
+    }
+
+    void printMap() {
+        System.out.println("Map:");
+        System.out.println("Capital");
+        System.out.println("City");
+        System.out.println("Town");
     }
 }
