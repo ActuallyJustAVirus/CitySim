@@ -9,8 +9,7 @@ public class CommandMap extends BaseCommand {
 
     @Override
     public void execute(Context context, String command, String[] parameters) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        context.transition("Map");
     }
     
 }

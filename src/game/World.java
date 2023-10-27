@@ -7,9 +7,9 @@ class World {
 
     World() {
         Space map = new SpaceMap();
-        Space capital = new Space("Capital");
-        Space city = new Space("City");
-        Space town = new Space("Town");
+        SpaceCity capital = new SpaceCity("Capital");
+        SpaceCity city = new SpaceCity("City");
+        SpaceCity town = new SpaceCity("Town");
 
         map.addEdge("Capital", capital);
         map.addEdge("City", city);

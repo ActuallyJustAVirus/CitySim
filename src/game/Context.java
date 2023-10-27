@@ -15,13 +15,13 @@ public class Context {
     }
 
     public void transition(String direction) {
-        Space next = currentSpace.followEdge(direction);
-        if (next == null) {
+        Space nextSpace = currentSpace.followEdge(direction);
+        if (nextSpace == null) {
             System.out.println("You are confused, and walk in a circle looking for '" + direction
                     + "'. In the end you give up 😩");
         } else {
             currentSpace.goodbye();
-            currentSpace = next;
+            currentSpace = nextSpace;
             currentSpace.welcome();
         }
     }
