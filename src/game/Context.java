@@ -3,6 +3,14 @@ package game;
  */
 
 public class Context {
+ 
+    int tidilbage =5;
+    int tid= 0;
+
+
+
+
+
     Space currentSpace;
     boolean done = false;
 
@@ -39,9 +47,19 @@ public class Context {
     public void NextTurn (){  /*Method to go to next turn. */
         System.out.println("´1 month later...");
 
-        balance += 123456;
+                System.out.println("Your new balance is "+balance);
 
-        System.out.println("Your new balance is "+balance);
+
+        balance += 123456;
+        tid++;
+        int max = 5;
+        if (tid > max) {
+           System.out.println("you lose");   
+          
+        }
+        
+
+
 
     }
     public void GetBalance(){
@@ -49,5 +67,9 @@ public class Context {
 
     }
 }
+
+
+
+
 
 
