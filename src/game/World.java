@@ -4,10 +4,10 @@ package game;
 
 import java.util.ArrayList;
 
-class World {
+public class World {
     Space entry;
     ArrayList<SpaceCity> spaces = new ArrayList<SpaceCity>();
-    ArrayList<Road> roads = new ArrayList<Road>();
+    public ArrayList<Road> roads = new ArrayList<Road>();
 
     World() {
         Space map = new SpaceMap(this);
@@ -18,16 +18,16 @@ class World {
         spaces.add(new SpaceCity("Hamlet", 30, 2));
         spaces.add(new SpaceCity("Locality", 55, 14));
 
-        roads.add(new Road(spaces.get(0), spaces.get(2)));
-        roads.add(new Road(spaces.get(0), spaces.get(1)));
-        roads.add(new Road(spaces.get(0), spaces.get(3)));
-        roads.add(new Road(spaces.get(0), spaces.get(4)));
-        roads.add(new Road(spaces.get(0), spaces.get(5)));
-        roads.add(new Road(spaces.get(1), spaces.get(3)));
-        roads.add(new Road(spaces.get(1), spaces.get(5)));
-        roads.add(new Road(spaces.get(2), spaces.get(4)));
-        roads.add(new Road(spaces.get(2), spaces.get(5)));
-        roads.add(new Road(spaces.get(3), spaces.get(4)));
+        for (int i = 0; i < 6; i++) {
+            spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
+        }
+
+        spaces.get(1).addBothEdges(spaces.get(3).getName(),spaces.get(3),spaces.get(1).getName());
+        spaces.get(1).addBothEdges(spaces.get(5).getName(),spaces.get(5),spaces.get(1).getName());
+        spaces.get(2).addBothEdges(spaces.get(4).getName(),spaces.get(4),spaces.get(2).getName());
+        spaces.get(2).addBothEdges(spaces.get(5).getName(),spaces.get(5),spaces.get(2).getName());
+        spaces.get(3).addBothEdges(spaces.get(4).getName(),spaces.get(4),spaces.get(3).getName());
+
 
         for (Space space : spaces) {
             map.addEdge(space.getName(), space);
@@ -35,15 +35,6 @@ class World {
 
         for (Space space : spaces) {
             space.addEdge("Map", map);
-        }
-
-        for (Space space : spaces) {
-            for (Space space2 : spaces) {
-                if (space == space2){
-                    continue;
-                }
-                space.addEdge(space2.getName(),space2);
-            }
         }
 
         this.entry = map;
@@ -60,6 +51,7 @@ class World {
                 map[i][j] = ' ';
             }
         }
+
         for (Road road : roads) {
             SpaceCity from = road.connectsTo[0];
             SpaceCity to = road.connectsTo[1];
@@ -70,6 +62,7 @@ class World {
                 map[y][i] = '`';
             }
         }
+
         for (SpaceCity space : spaces) {
             char[] name = space.getName().toCharArray();
             for (int i = 0; i < name.length; i++) {

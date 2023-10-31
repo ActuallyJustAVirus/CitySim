@@ -3,16 +3,15 @@ package game;
  */
 
 public class Context {
- 
+
     int tidilbage =5;
     int tid= 0;
-    
 
     Space currentSpace;
     public World world;
     boolean done = false;
 
-    int balance = 6969;
+    public int balance = 100;
 
     Context(World world) {
         this.world = world;
@@ -45,12 +44,15 @@ public class Context {
 
     public void NextTurn (){  /*Method to go to next turn. */
         System.out.println("´1 month later...");
+
+        balance += world.roads.size()*10 + 10;
+
         System.out.println("Your new balance is "+balance);
-        balance += 123456;
+
         tid++;
         int max = 5;
         if (tid > max) {
-           System.out.println("you lose");               
+           System.out.println("you lose");
         }
 
     int antalveje=10;
@@ -58,18 +60,17 @@ public class Context {
         System.out.println("you win");
 
     }
-    
-        
+
+
     }
-    
     public void GetBalance(){
     System.out.println("Your balance is "+balance);
 
     }
+
+    public int getPrice(SpaceCity city1, SpaceCity city2){
+        return 50;        //TODO
+    }
 }
-
-
-
-
 
 

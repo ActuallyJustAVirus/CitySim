@@ -59,6 +59,7 @@ public class Game {
             String line = scanner.nextLine();
             registry.dispatch(line);
         }
+
         System.out.println("Game Over 😥");
     }
 }

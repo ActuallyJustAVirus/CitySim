@@ -5,9 +5,9 @@ package game;
 import java.util.HashMap;
 import java.util.Map;
 
-class Node {
+public class Node {
     String name;
-    Map<String, Node> edges = new HashMap<String, Node>();
+    public Map<String, Node> edges = new HashMap<String, Node>();
 
     Node(String name) {
         this.name = name;
@@ -19,6 +19,11 @@ class Node {
 
     public void addEdge(String name, Node node) {
         edges.put(name, node);
+    }
+
+    public void addBothEdges(String name, Node node, String thisname){
+        this.addEdge(name,node);
+        node.addEdge(thisname, this);
     }
 
     public Node followEdge(String direction) {
