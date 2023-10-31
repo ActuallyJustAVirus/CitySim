@@ -38,7 +38,7 @@ public class Game {
         registry.register("duck", new Command() {
             @Override
             public void execute(Context context, String command, String[] parameters) {
-                System.out.println("duc");
+                System.out.println("🦆");
             }
 
             @Override
