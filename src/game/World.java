@@ -18,6 +18,17 @@ class World {
         spaces.add(new SpaceCity("Hamlet", 30, 2));
         spaces.add(new SpaceCity("Locality", 55, 14));
 
+        roads.add(new Road(spaces.get(0), spaces.get(2)));
+        roads.add(new Road(spaces.get(0), spaces.get(1)));
+        roads.add(new Road(spaces.get(0), spaces.get(3)));
+        roads.add(new Road(spaces.get(0), spaces.get(4)));
+        roads.add(new Road(spaces.get(0), spaces.get(5)));
+        roads.add(new Road(spaces.get(1), spaces.get(3)));
+        roads.add(new Road(spaces.get(1), spaces.get(5)));
+        roads.add(new Road(spaces.get(2), spaces.get(4)));
+        roads.add(new Road(spaces.get(2), spaces.get(5)));
+        roads.add(new Road(spaces.get(3), spaces.get(4)));
+
         for (Space space : spaces) {
             map.addEdge(space.getName(), space);
         }
@@ -49,15 +60,21 @@ class World {
                 map[i][j] = ' ';
             }
         }
-        for (SpaceCity space : spaces) {
-            map[space.y][space.x] = space.getName().charAt(0);
-        }
         for (Road road : roads) {
             SpaceCity from = road.connectsTo[0];
             SpaceCity to = road.connectsTo[1];
-            int x = (from.x + to.x) / 2;
-            int y = (from.y + to.y) / 2;
-            map[y][x] = 'X';
+            int max = (from.x > to.x) ? from.x : to.x;
+            int min = (from.x < to.x) ? from.x : to.x;
+            for (int i = min; i <= max; i++) {
+                int y = from.y + (to.y - from.y) * (i - from.x) / (to.x - from.x);
+                map[y][i] = '`';
+            }
+        }
+        for (SpaceCity space : spaces) {
+            char[] name = space.getName().toCharArray();
+            for (int i = 0; i < name.length; i++) {
+                map[space.y][space.x + i] = name[i];
+            }
         }
 
         // print map

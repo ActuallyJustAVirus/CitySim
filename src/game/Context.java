@@ -12,12 +12,14 @@ public class Context {
 
 
     Space currentSpace;
+    public World world;
     boolean done = false;
 
     int balance = 6969;
 
-    Context(Space node) {
-        currentSpace = node;
+    Context(World world) {
+        this.world = world;
+        currentSpace = world.getEntry();
     }
 
     public Space getCurrentSpace() {
