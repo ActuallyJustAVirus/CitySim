@@ -65,6 +65,12 @@ public class CommandBuild extends BaseCommand {
                 }
             }
 
+            int price = context.getPrice(city2,city);
+
+            if (context.balance < price){
+                System.out.println("Insufficient funds 😭");
+                return;
+            }
             Road road = new Road(city, city2);
             context.world.roads.add(road);
             System.out.println("You have built a road from " + city.getName() + " to " + cityInput);
