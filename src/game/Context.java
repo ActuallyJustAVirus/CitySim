@@ -43,7 +43,7 @@ public class Context {
     }
 
     public void NextTurn (){  /*Method to go to next turn. */
-        System.out.println("´1 month later...");
+        System.out.println("1 month later...");
 
         balance += world.roads.size()*10 + 10;
 
