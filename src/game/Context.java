@@ -68,7 +68,7 @@ public class Context {
 
     }
 
-    public int getPrice(SpaceCity city1, SpaceCity city2){
+    public int getPrice(CitySpace city1, CitySpace city2){
         return 50;        //TODO
     }
 }

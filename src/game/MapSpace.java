@@ -1,9 +1,9 @@
 package game;
 
-public class SpaceMap extends Space{
+public class MapSpace extends Space{
     World world;
 
-    SpaceMap(World world) {
+    MapSpace(World world) {
         super("Map");
         this.world = world;
     }

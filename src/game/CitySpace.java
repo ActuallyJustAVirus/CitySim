@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-public class SpaceCity extends Space {
-    public ArrayList<SpaceCity> neighbors = new ArrayList<SpaceCity>();
+public class CitySpace extends Space {
+    public ArrayList<CitySpace> neighbors = new ArrayList<CitySpace>();
     int x, y;
 
-    SpaceCity(String name, int x, int y) {
+    CitySpace(String name, int x, int y) {
         super(name);
         this.x = x;
         this.y = y;

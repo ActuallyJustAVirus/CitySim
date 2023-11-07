@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 public class World {
     Space entry;
-    ArrayList<SpaceCity> spaces = new ArrayList<SpaceCity>();
+    ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
     public ArrayList<Road> roads = new ArrayList<Road>();
 
     World() {
-        Space map = new SpaceMap(this);
-        spaces.add(new SpaceCity("Capital", 45, 7));
-        spaces.add(new SpaceCity("City", 10, 12));
-        spaces.add(new SpaceCity("Town", 85, 3));
-        spaces.add(new SpaceCity("Village", 5, 4));
-        spaces.add(new SpaceCity("Hamlet", 30, 2));
-        spaces.add(new SpaceCity("Locality", 55, 14));
+        Space map = new MapSpace(this);
+        spaces.add(new CitySpace("Capital", 45, 7));
+        spaces.add(new CitySpace("City", 10, 12));
+        spaces.add(new CitySpace("Town", 85, 3));
+        spaces.add(new CitySpace("Village", 5, 4));
+        spaces.add(new CitySpace("Hamlet", 30, 2));
+        spaces.add(new CitySpace("Locality", 55, 14));
 
         for (int i = 0; i < 6; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
@@ -53,8 +53,8 @@ public class World {
         }
 
         for (Road road : roads) {
-            SpaceCity from = road.connectsTo[0];
-            SpaceCity to = road.connectsTo[1];
+            CitySpace from = road.connectsTo[0];
+            CitySpace to = road.connectsTo[1];
             int max = (from.x > to.x) ? from.x : to.x;
             int min = (from.x < to.x) ? from.x : to.x;
             for (int i = min; i <= max; i++) {
@@ -63,7 +63,7 @@ public class World {
             }
         }
 
-        for (SpaceCity space : spaces) {
+        for (CitySpace space : spaces) {
             char[] name = space.getName().toCharArray();
             for (int i = 0; i < name.length; i++) {
                 map[space.y][space.x + i] = name[i];

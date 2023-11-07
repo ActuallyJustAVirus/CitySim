@@ -3,7 +3,7 @@ package commands;
 import game.Context;
 import game.Registry;
 import game.Space;
-import game.SpaceCity;
+import game.CitySpace;
 import game.Road;
 import java.util.Scanner;
 import java.util.Set;
@@ -23,9 +23,9 @@ public class CommandBuild extends BaseCommand {
     @Override
     public void execute(Context context, String command, String[] parameters) {
         Space currentSpace = context.getCurrentSpace();
-        if (currentSpace instanceof SpaceCity) {
+        if (currentSpace instanceof CitySpace) {
 
-            SpaceCity city = (SpaceCity) currentSpace;
+            CitySpace city = (CitySpace) currentSpace;
 
             Set<String> cities = city.edges.keySet();
             System.out.println("You can build roads to: ");
@@ -36,7 +36,7 @@ public class CommandBuild extends BaseCommand {
                     continue;
                 }
 
-                SpaceCity node = (SpaceCity)city.edges.get(cityName);
+                CitySpace node = (CitySpace)city.edges.get(cityName);
                 for (Road road : context.world.roads) {
                     if ((road.connectsTo[0] == city && road.connectsTo[1] == city)||(road.connectsTo[1] == node && road.connectsTo[0] == city)) {
                         continue label; //jumps to 'label'
@@ -50,7 +50,7 @@ public class CommandBuild extends BaseCommand {
             System.out.println("Build a road to: ");
             System.out.print("> ");
             cityInput = scanner.next();
-            SpaceCity city2 = (SpaceCity) city.followEdge(cityInput);
+            CitySpace city2 = (CitySpace) city.followEdge(cityInput);
 
             if (city2 == null){
                 System.out.println("You can't build a road from "+city.getName()+" to "+cityInput);
