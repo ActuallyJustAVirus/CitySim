@@ -4,8 +4,8 @@ package game;
 
 public class Context {
 
-    int tidilbage =5;
-    int tid= 0;
+    int tidilbage = 5;
+    int tid = 0;
 
     Space currentSpace;
     public World world;
@@ -42,35 +42,33 @@ public class Context {
         return done;
     }
 
-    public void NextTurn (){  /*Method to go to next turn. */
+    public void NextTurn() { /* Method to go to next turn. */
         System.out.println("1 month later...");
 
-        balance += world.roads.size()*10 + 10;
+        balance += world.roads.size() * 10 + 10;
 
-        System.out.println("Your new balance is "+balance);
+        System.out.println("Your new balance is " + balance);
 
         tid++;
         int max = 5;
         if (tid > max) {
-           System.out.println("you lose");
+            System.out.println("you lose");
         }
 
-    int antalveje=10;
-    if(antalveje==world.roads.size()){
-        System.out.println("you win");
+        int antalveje = 10;
+        if (antalveje == world.roads.size()) {
+            System.out.println("you win");
+
+        }
 
     }
 
+    public void GetBalance() {
+        System.out.println("Your balance is " + balance);
 
     }
-    public void GetBalance(){
-    System.out.println("Your balance is "+balance);
 
-    }
-
-    public int getPrice(CitySpace city1, CitySpace city2){
-        return 50;        //TODO
+    public int getPrice(CitySpace city1, CitySpace city2) {
+        return 50; // TODO
     }
 }
-
-

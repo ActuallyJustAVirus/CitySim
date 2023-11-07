@@ -1,11 +1,6 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-
 public class CitySpace extends Space {
-    public ArrayList<CitySpace> neighbors = new ArrayList<CitySpace>();
     int x, y;
 
     CitySpace(String name, int x, int y) {

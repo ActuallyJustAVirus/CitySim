@@ -33,7 +33,6 @@ public class Game {
         registry.register("build", new CommandBuild());
         registry.register("bal", new CommandBalance());
 
-
         // example of anonymous class
         registry.register("duck", new Command() {
             @Override
@@ -48,7 +47,7 @@ public class Game {
         });
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("Welcome to the World of Zuul!");
 
         initRegistry();
