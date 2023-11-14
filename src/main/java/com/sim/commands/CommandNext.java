@@ -1,6 +1,6 @@
-package commands;
+package com.sim.commands;
 
-import game.Context;
+import com.sim.Context;
 
 public class CommandNext extends BaseCommand {
 

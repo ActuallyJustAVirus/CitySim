@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 /* World class for modeling the entire in-game world
  */
 

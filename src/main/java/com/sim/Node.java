@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 /* Node class for modeling graphs
  */
 

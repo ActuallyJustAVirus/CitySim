@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 
 public class MapSpace extends Space{
     World world;

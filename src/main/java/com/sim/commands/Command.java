@@ -1,8 +1,8 @@
-package commands;
+package com.sim.commands;
 /* Command interface
  */
 
-import game.Context;
+import com.sim.Context;
 
 public interface Command {
     void execute(Context context, String command, String parameters[]);

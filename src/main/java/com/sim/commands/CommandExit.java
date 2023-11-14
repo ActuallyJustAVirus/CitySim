@@ -1,8 +1,8 @@
-package commands;
+package com.sim.commands;
 /* Command for exiting program
  */
 
-import game.Context;
+import com.sim.Context;
 
 public class CommandExit extends BaseCommand {
 

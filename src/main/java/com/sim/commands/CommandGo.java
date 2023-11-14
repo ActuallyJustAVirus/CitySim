@@ -1,8 +1,8 @@
-package commands;
+package com.sim.commands;
 /* Command for transitioning between spaces
  */
 
-import game.Context;
+import com.sim.Context;
 
 public class CommandGo extends BaseCommand {
     public CommandGo() {

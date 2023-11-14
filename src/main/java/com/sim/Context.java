@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 /* Context class to hold all context relevant to a session.
  */
 

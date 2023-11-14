@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 /* Space class for modeling spaces (rooms, caves, ...)
  */
 

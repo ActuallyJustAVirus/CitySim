@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 
 public class Road {
     public CitySpace[] connectsTo = new CitySpace[2];

@@ -1,4 +1,4 @@
-package commands;
+package com.sim.commands;
 /* Baseclass for commands
  */
 

@@ -1,15 +1,15 @@
-package commands;
+package com.sim.commands;
 
-import game.Context;
-import game.Registry;
-import game.Space;
-import game.CitySpace;
-import game.Road;
 import java.util.Scanner;
 import java.util.Set;
-import game.Node;
 
-import game.Game;
+import com.sim.CitySpace;
+import com.sim.Context;
+import com.sim.Game;
+import com.sim.Node;
+import com.sim.Registry;
+import com.sim.Road;
+import com.sim.Space;
 
 public class CommandBuild extends BaseCommand {
 

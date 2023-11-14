@@ -1,11 +1,11 @@
-package commands;
+package com.sim.commands;
 /* Help command
  */
 
 import java.util.Arrays;
 
-import game.Context;
-import game.Registry;
+import com.sim.Context;
+import com.sim.Registry;
 
 public class CommandHelp extends BaseCommand {
     Registry registry;

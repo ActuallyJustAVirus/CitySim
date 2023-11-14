@@ -1,4 +1,4 @@
-package game;
+package com.sim;
 
 public class CitySpace extends Space {
     int x, y;

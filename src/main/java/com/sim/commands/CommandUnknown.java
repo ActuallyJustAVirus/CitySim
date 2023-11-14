@@ -1,8 +1,8 @@
-package commands;
+package com.sim.commands;
 /* Fallback for when a command is not implemented
  */
 
-import game.Context;
+import com.sim.Context;
 
 public class CommandUnknown extends BaseCommand {
     @Override

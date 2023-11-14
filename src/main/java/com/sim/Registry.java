@@ -1,11 +1,11 @@
-package game;
+package com.sim;
 /* Command registry
  */
 
 import java.util.HashMap;
 import java.util.Map;
 
-import commands.Command;
+import com.sim.commands.Command;
 
 public class Registry {
     Context context;

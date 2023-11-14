@@ -1,18 +1,18 @@
-package game;
+package com.sim;
 /* Main class for launching the game
  */
 
 import java.util.Scanner;
 
-import commands.Command;
-import commands.CommandBalance;
-import commands.CommandExit;
-import commands.CommandGo;
-import commands.CommandHelp;
-import commands.CommandUnknown;
-import commands.CommandNext;
-import commands.CommandMap;
-import commands.CommandBuild;
+import com.sim.commands.Command;
+import com.sim.commands.CommandBalance;
+import com.sim.commands.CommandExit;
+import com.sim.commands.CommandGo;
+import com.sim.commands.CommandHelp;
+import com.sim.commands.CommandUnknown;
+import com.sim.commands.CommandNext;
+import com.sim.commands.CommandMap;
+import com.sim.commands.CommandBuild;
 
 public class Game {
     static World world = new World();
