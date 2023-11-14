@@ -22,6 +22,7 @@ public class Registry {
     }
 
     public void dispatch(String line) {
+        line = line.trim().toLowerCase();
         String[] elements = line.split(" ");
         String command = elements[0];
         String[] parameters = getParameters(elements);
