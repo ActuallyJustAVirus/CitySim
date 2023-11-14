@@ -2,6 +2,8 @@ package com.sim;
 /* Node class for modeling graphs
  */
 
+import com.sim.commands.CommandUnknown;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +29,11 @@ public class Node {
     }
 
     public Node followEdge(String direction) {
-        return edges.get(direction);
+        for(String compares: edges.keySet()){    //Compares lower case input with list of nodes.
+            if (compares.toLowerCase().equals(direction)){
+                return edges.get(compares);
+            }
+        }
+        return null;
     }
 }
