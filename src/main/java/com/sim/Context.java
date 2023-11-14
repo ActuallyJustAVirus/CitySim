@@ -3,8 +3,6 @@ package com.sim;
  */
 
 public class Context {
-
-    int tidilbage = 5;
     int tid = 0;
 
     Space currentSpace;
