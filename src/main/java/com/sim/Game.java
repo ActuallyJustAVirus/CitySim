@@ -13,6 +13,7 @@ import com.sim.commands.CommandUnknown;
 import com.sim.commands.CommandNext;
 import com.sim.commands.CommandMap;
 import com.sim.commands.CommandBuild;
+import com.sim.gui.Frame;
 
 public class Game {
     static World world = new World();
@@ -21,7 +22,7 @@ public class Game {
     static Registry registry = new Registry(context, fallback);
     static Scanner scanner = new Scanner(System.in);
 
-    private static void initRegistry() {
+    public static void initRegistry() {
         Command cmdExit = new CommandExit();
         registry.register("exit", cmdExit);
         registry.register("quit", cmdExit);

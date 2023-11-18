@@ -9,6 +9,18 @@ public class CitySpace extends Space {
         this.y = y;
     }
 
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
     @Override
     public void welcome() {
         System.out.println("You are in " + name);
