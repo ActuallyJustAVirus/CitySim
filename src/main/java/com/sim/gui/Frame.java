@@ -1,4 +1,4 @@
-package com.sim;
+package com.sim.gui;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class Frame extends Application {
     
     private static Scene scene;
     private static Canvas canvas;
@@ -36,7 +36,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Frame.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
