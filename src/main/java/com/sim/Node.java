@@ -29,7 +29,8 @@ public class Node {
     }
 
     public Node followEdge(String direction) {
-        for(String compares: edges.keySet()){    //Compares lower case input with list of nodes (in world.java).
+        direction = direction.toLowerCase();
+        for(String compares: edges.keySet()){    //Compares lower case input with list of nodes.
             if (compares.toLowerCase().equals(direction)){
                 return edges.get(compares);
             }
