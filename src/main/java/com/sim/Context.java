@@ -69,4 +69,10 @@ public class Context {
     public int getPrice(CitySpace city1, CitySpace city2) {
         return 50; // TODO
     }
+
+
+// Below is an item list.
+public Item item1 = new Item("Test","This is a Test Item",true,true);
 }
+
+
