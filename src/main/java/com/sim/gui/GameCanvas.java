@@ -10,9 +10,9 @@ public class GameCanvas {
 
     private Canvas canvas;
 
-    Image city = new Image("file:/Users/mikkelnielsen/Desktop/Skole/OOP/data/CitySim/src/main/resources/com/sim/gui/Village.png");
-    Image pond = new Image("file:/Users/mikkelnielsen/Desktop/Skole/OOP/data/CitySim/src/main/resources/com/sim/gui/Lake.png");
-    Image mountain = new Image("file:/Users/mikkelnielsen/Desktop/Skole/OOP/data/CitySim/src/main/resources/com/sim/gui/Mountain.png");
+    Image city = new Image("file:src/main/resources/com/sim/gui/village.png");
+    Image pond = new Image("file:src/main/resources/com/sim/gui/Lake.png");
+    Image mountain = new Image("file:src/main/resources/com/sim/gui/Mountain.png");
     public GameCanvas (Canvas canvas){
         this.canvas = canvas;
     }
