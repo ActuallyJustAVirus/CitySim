@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
+   <children>
+      <StackPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Canvas fx:id="canvas" height="400.0" width="640.0" />
+            <AnchorPane fx:id="overlay">
+               <children>
+                  <Label fx:id="label" layoutX="71.0" layoutY="15.0" text="Label" />
+                  <Button fx:id="button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" prefHeight="15.0" prefWidth="640.0" spacing="20.0">
+         <children>
+            <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+            <Button fx:id="button2" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+            <Button fx:id="button3" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

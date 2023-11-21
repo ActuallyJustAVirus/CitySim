@@ -4,4 +4,6 @@ module com.sim {
 
     opens com.sim to javafx.fxml;
     exports com.sim;
+    opens com.sim.gui to javafx.fxml;
+    exports com.sim.gui;
 }

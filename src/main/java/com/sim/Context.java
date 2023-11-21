@@ -11,7 +11,7 @@ public class Context {
 
     public int balance = 100;
 
-    Context(World world) {
+    public Context(World world) {
         this.world = world;
         currentSpace = world.getEntry();
     }

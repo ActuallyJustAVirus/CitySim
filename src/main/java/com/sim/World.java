@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class World {
     Space entry;
-    ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
+    public ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
     public ArrayList<Road> roads = new ArrayList<Road>();
 
-    World() {
+    public World() {
         Space map = new MapSpace(this);
         spaces.add(new CitySpace("Capital", 45, 7, true, true, true, true, true));
         spaces.add(new CitySpace("City", 10, 12, true, false, false, true, false));

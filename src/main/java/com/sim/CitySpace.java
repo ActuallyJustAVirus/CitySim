@@ -24,6 +24,18 @@ public class CitySpace extends Space {
             accesspoints.add(accesspoint);
         }
 
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
         public List<String> getAccesspoints(){
             return accesspoints;
         }
@@ -37,7 +49,7 @@ public class CitySpace extends Space {
             System.out.println("Access points in this city");
          for(String accespoint:accesspoints){
              System.out.println("-"+ accesspoints);
-         }   
+         }
 
         }
 
