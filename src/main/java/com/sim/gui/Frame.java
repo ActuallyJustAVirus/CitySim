@@ -34,18 +34,20 @@ public class Frame extends Application {
         GameCanvas gameCanvas = new GameCanvas(canvas);
         overlay = (AnchorPane) scene.lookup("#overlay");
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.FORESTGREEN);
+        gc.setFill(Color.DARKOLIVEGREEN);
         gc.fillRect(0, 0, 10000, 10000);
         gc.fillText("Hello", 10, 10);
+
+
         overlay.setOnMouseClicked(e -> {
+            if (e.getX() == 500){
+            //    gc.fillText("no", e.getX(), e.getY());
+            }
             // gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             gc.setFill(javafx.scene.paint.Color.BLACK);
             gc.fillText("Hello", e.getX(), e.getY());
         });
-
-        for (CitySpace cities:world.spaces) {
-            gameCanvas.drawCity(cities.getX(),cities.getY(),cities.getName());
-        }
+        gameCanvas.drawCity(world.spaces);
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
