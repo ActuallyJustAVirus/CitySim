@@ -3,15 +3,14 @@ package com.sim.gui;
 import java.io.IOException;
 
 import com.sim.CitySpace;
+import com.sim.Context;
 import com.sim.World;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
@@ -22,6 +21,8 @@ public class Frame extends Application {
 
     public static World world;
 
+    public static Context context;
+
 
 
     @Override
@@ -31,29 +32,32 @@ public class Frame extends Application {
         stage.setScene(scene);
         stage.show();
         canvas = (Canvas) scene.lookup("#canvas");
-        GameCanvas gameCanvas = new GameCanvas(canvas);
+        GameCanvas gameCanvas = new GameCanvas(canvas, world, context);
         overlay = (AnchorPane) scene.lookup("#overlay");
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.DARKOLIVEGREEN);
-        gc.fillRect(0, 0, 10000, 10000);
-        gc.fillText("Hello", 10, 10);
+        context = new Context(world);
+
 
 
         overlay.setOnMouseClicked(e -> {
-            if (e.getX() == 500){
-            //    gc.fillText("no", e.getX(), e.getY());
+            CitySpace selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
+
+            context.transition("map");
+
+            if (selectedCity != null) {
+                context.transition(selectedCity.getName());
             }
-            // gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(javafx.scene.paint.Color.BLACK);
-            gc.fillText("Hello", e.getX(), e.getY());
+
         });
-        gameCanvas.drawCity(world.spaces);
+        gameCanvas.redraw();
+
     }
+
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Frame.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
 
     public static void main(String[] args) {
         world = new World();
