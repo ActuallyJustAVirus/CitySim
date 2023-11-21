@@ -11,12 +11,14 @@ public class World {
 
     World() {
         Space map = new MapSpace(this);
-        spaces.add(new CitySpace("Capital", 45, 7));
-        spaces.add(new CitySpace("City", 10, 12));
-        spaces.add(new CitySpace("Town", 85, 3));
-        spaces.add(new CitySpace("Village", 5, 4));
-        spaces.add(new CitySpace("Hamlet", 30, 2));
-        spaces.add(new CitySpace("Locality", 55, 14));
+        spaces.add(new CitySpace("Capital", 45, 7, true, true, true, true, true));
+        spaces.add(new CitySpace("City", 10, 12, true, false, false, true, false));
+        spaces.add(new CitySpace("Town", 85, 3, false, true, true, false, true));
+        spaces.add(new CitySpace("Village", 5, 4, false, false,false, true, false));
+        spaces.add(new CitySpace("Hamlet", 30, 2, false,true,false,false,false));
+        spaces.add(new CitySpace("Locality", 55, 14,false, false, false, false, false));
+
+        //TODO: Figure out what cities has access to what institutions.
 
         for (int i = 0; i < 6; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
