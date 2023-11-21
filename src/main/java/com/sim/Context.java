@@ -8,12 +8,20 @@ public class Context {
     Space currentSpace;
     public World world;
     boolean done = false;
-
     public int balance = 100;
+    public Inventory inv = new Inventory();
 
     Context(World world) {
         this.world = world;
         currentSpace = world.getEntry();
+
+        // Below is an item list.
+        Item item1 = new Item("Test","This is a Test Item",true,true);
+        Item item2 = new Item("Test2","This is a Test Item",true,true);
+        Item item3 = new Item("Test2","This is a Test Item",true,true);
+        inv.addItem(item1); // This is only test items. Right now they will be added as soon as the games starts.
+        inv.addItem(item2);
+        inv.addItem(item3);
     }
 
     public Space getCurrentSpace() {
@@ -58,9 +66,7 @@ public class Context {
             System.out.println("you win");
 
         }
-
     }
-
     public void GetBalance() {
         System.out.println("Your balance is " + balance);
 
@@ -71,8 +77,9 @@ public class Context {
     }
 
 
-// Below is an item list.
-public Item item1 = new Item("Test","This is a Test Item",true,true);
+
+
 }
+
 
 
