@@ -4,16 +4,7 @@ package com.sim;
 
 import java.util.Scanner;
 
-import com.sim.commands.Command;
-import com.sim.commands.CommandBalance;
-import com.sim.commands.CommandExit;
-import com.sim.commands.CommandGo;
-import com.sim.commands.CommandHelp;
-import com.sim.commands.CommandUnknown;
-import com.sim.commands.CommandNext;
-import com.sim.commands.CommandMap;
-import com.sim.commands.CommandBuild;
-import com.sim.gui.Frame;
+import com.sim.commands.*;
 
 public class Game {
     static World world = new World();
@@ -33,7 +24,9 @@ public class Game {
         registry.register("map", new CommandMap());
         registry.register("build", new CommandBuild());
         registry.register("bal", new CommandBalance());
-
+        registry.register("inventory", new CommandInventory());
+        registry.register("take", new CommandTake());
+        registry.register("inspect", new CommandInspect());
         // example of anonymous class
         registry.register("duck", new Command() {
             @Override

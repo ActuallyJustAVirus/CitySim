@@ -24,7 +24,11 @@ public class Item {
             return this.description;
         }
     }
-    public void Inspect(){
+    public void inspect(){
         System.out.println(("You examine the "+this.getName()+". "+this.getDesc()));
+    }
+
+    public boolean isPortable() {
+        return portable;
     }
 }
