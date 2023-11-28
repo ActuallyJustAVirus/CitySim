@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.sim.CitySpace;
 import com.sim.Context;
 import com.sim.World;
+import com.sim.commands.CommandInventory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,11 +24,11 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton,closeInventory;
 
-    private static Label infoText;
+    private static Label infoText, inventoryLabel ;
 
-    private static Pane infoPane;
+    private static Pane infoPane,inventoryPane;
 
     public static World world;
 
@@ -50,6 +51,10 @@ public class Frame extends Application {
         infoPane = (Pane) scene.lookup("#infoPane");
         closeInfo = (Button) scene.lookup("#closeInfo");
         infoText = (Label) scene.lookup("#infoText");
+        inventoryButton = (Button) scene.lookup("#inventoryButton");
+        inventoryPane = (Pane) scene.lookup("#inventoryPane");
+        closeInventory = (Button) scene.lookup("#closeInventory");
+        inventoryLabel = (Label) scene.lookup("#inventoryText");
 
 
         closeInfo.setOnMouseClicked(e -> {
@@ -58,6 +63,16 @@ public class Frame extends Application {
 
         buildButton.setOnMouseClicked(e -> {
             gameCanvas.checkBuildClicked();
+        });
+
+        inventoryButton.setOnMouseClicked(e -> {
+            inventoryPane.setVisible(true);
+            inventoryLabel.setText(context.inv.getInventoryList());
+
+        });
+
+        closeInventory.setOnMouseClicked(e -> {
+            inventoryPane.setVisible(false);
         });
 
         overlay.setOnMouseClicked(e -> {

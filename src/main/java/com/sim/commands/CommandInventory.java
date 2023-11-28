@@ -9,11 +9,6 @@ public class CommandInventory extends BaseCommand {
     }
     @Override
     public void execute(Context context, String command, String[] parameters) {
-
-        System.out.println("Inventory:");
-
-        for (Item item : context.inv.objects) {
-            System.out.println(item.getName());
-        }
+        System.out.println(context.inv.getInventoryList());
     }
 }

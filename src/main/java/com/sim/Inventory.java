@@ -19,4 +19,17 @@ public class Inventory{
         }
         return null;
     }
+
+    public String getInventoryList() {
+        String inventoryString = "";
+
+        for (Item item : objects) {
+            inventoryString += item.getName() + ", ";
+        }
+        // Following statement removes ", " if there is no need for it.
+        if(!inventoryString.isEmpty()){
+            inventoryString = inventoryString.substring(0, inventoryString.length() - 2);
+        }
+        return inventoryString;
+    }
 }
