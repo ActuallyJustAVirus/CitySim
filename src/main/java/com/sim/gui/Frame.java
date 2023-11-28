@@ -23,7 +23,7 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo;
+    private static Button infoButton, buildButton, closeInfo, nextturnButton;
 
     private static Label infoText;
 
@@ -50,8 +50,12 @@ public class Frame extends Application {
         infoPane = (Pane) scene.lookup("#infoPane");
         closeInfo = (Button) scene.lookup("#closeInfo");
         infoText = (Label) scene.lookup("#infoText");
+        nextturnButton = (Button) scene.lookup("#nextturn");
 
+        nextturnButton.setOnMouseClicked(e->{
+            context.NextTurn();
 
+        });
         closeInfo.setOnMouseClicked(e -> {
             infoPane.setVisible(false);
         });

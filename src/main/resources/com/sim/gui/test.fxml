@@ -37,6 +37,7 @@
             <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
             <Button fx:id="button2" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
             <Button fx:id="button3" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+            <Button fx:id="nextturn" mnemonicParsing="false" text="nextturn"/>                            
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -47,3 +48,4 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
+
