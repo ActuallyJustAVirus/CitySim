@@ -52,6 +52,5 @@ public class CitySpace extends Space {
          }
 
         }
-
     }
 }

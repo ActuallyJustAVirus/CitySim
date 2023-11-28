@@ -24,7 +24,7 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton,closeInventory;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextturnButton;
 
     private static Label infoText, inventoryLabel ;
 
@@ -55,8 +55,12 @@ public class Frame extends Application {
         inventoryPane = (Pane) scene.lookup("#inventoryPane");
         closeInventory = (Button) scene.lookup("#closeInventory");
         inventoryLabel = (Label) scene.lookup("#inventoryText");
+        nextturnButton = (Button) scene.lookup("#nextturn");
 
+        nextturnButton.setOnMouseClicked(e->{
+            context.NextTurn();
 
+        });
         closeInfo.setOnMouseClicked(e -> {
             infoPane.setVisible(false);
         });
