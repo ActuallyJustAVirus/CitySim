@@ -5,6 +5,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.shape.Rectangle?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
    <children>
       <StackPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -14,6 +16,18 @@
                <children>
                   <Label fx:id="label" layoutX="71.0" layoutY="15.0" text="Label" />
                   <Button fx:id="button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                  <Pane fx:id="infoPane" layoutX="120" layoutY="100" prefWidth="400" prefHeight="200" style="-fx-background-color: white" visible="false">
+                     <children>
+                        <Label fx:id="infoText" layoutX="100" layoutY="100" text="Information about city"/>
+                        <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X"/>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="500" layoutY="20">
+                     <children>
+                        <Button fx:id="buildButton" prefWidth="50" layoutX="0" layoutY="10" mnemonicParsing="false" text="Build" visible="false"/>
+                        <Button fx:id="infoButton" prefWidth="50" layoutX="50" layoutY="10" mnemonicParsing="false" text="Info" visible="false"/>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>

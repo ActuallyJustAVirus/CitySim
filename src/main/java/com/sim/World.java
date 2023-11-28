@@ -20,7 +20,7 @@ public class World {
 
         //TODO: Figure out what cities has access to what institutions.
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
         }
 
