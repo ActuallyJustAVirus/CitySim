@@ -10,6 +10,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
+import com.sim.Road;
+import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
@@ -104,7 +106,11 @@ public class GameCanvas {
             }
         }
 
+        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
+            CitySpace from = road.connectsTo[0];
+            CitySpace to = road.connectsTo[1];
 
+        }
 
         gc.drawImage(pond,375,200,150,150);
         gc.drawImage(pond,80,150,150,150);
