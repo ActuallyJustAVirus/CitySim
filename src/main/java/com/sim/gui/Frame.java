@@ -24,11 +24,11 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextturnButton;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
 
-    private static Label infoText, inventoryLabel ;
+    private static Label infoText, inventoryLabel, buildText;
 
-    private static Pane infoPane,inventoryPane;
+    private static Pane infoPane,inventoryPane, buildPane;
 
     public static World world;
 
@@ -43,9 +43,10 @@ public class Frame extends Application {
         stage.setScene(scene);
         stage.show();
         canvas = (Canvas) scene.lookup("#canvas");
+        context = new Context(world);
         GameCanvas gameCanvas = new GameCanvas(canvas, world, context);
         overlay = (AnchorPane) scene.lookup("#overlay");
-        context = new Context(world);
+
         infoButton = (Button) scene.lookup("#infoButton");
         buildButton = (Button) scene.lookup("#buildButton");
         infoPane = (Pane) scene.lookup("#infoPane");
@@ -55,9 +56,13 @@ public class Frame extends Application {
         inventoryPane = (Pane) scene.lookup("#inventoryPane");
         closeInventory = (Button) scene.lookup("#closeInventory");
         inventoryLabel = (Label) scene.lookup("#inventoryText");
-        nextturnButton = (Button) scene.lookup("#nextturn");
+        nextTurnButton = (Button) scene.lookup("#nextturn");
+        buildPane = (Pane) scene.lookup("#buildPane");
+        buildText = (Label) scene.lookup("#buildText");
+        yesBuild = (Button) scene.lookup("#yesBuild");
+        noBuild = (Button) scene.lookup("#noBuild");
 
-        nextturnButton.setOnMouseClicked(e->{
+        nextTurnButton.setOnMouseClicked(e->{
             context.NextTurn();
 
         });
@@ -79,13 +84,34 @@ public class Frame extends Application {
             inventoryPane.setVisible(false);
         });
 
+        yesBuild.setOnMouseClicked(e -> {
+            buildPane.setVisible(false);
+            gameCanvas.build();
+            gameCanvas.selectedCity = null;
+            buildButton.setVisible(false);
+            infoButton.setVisible(false);
+            gameCanvas.redraw();
+        });
+
+        noBuild.setOnMouseClicked(e -> {
+            buildPane.setVisible(false);
+            gameCanvas.build = false;
+            gameCanvas.redraw();
+        });
+
         overlay.setOnMouseClicked(e -> {
-            CitySpace selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
+            if (gameCanvas.build){
+                gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
+                buildPane.setVisible(true);
+                buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
+            }
 
-            context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
+            else{
+                gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
+                context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
 
-            if (selectedCity != null) {
-                context.transition(selectedCity.getName());
+            if (gameCanvas.selectedCity != null) {
+                context.transition(gameCanvas.selectedCity.getName());
                 gameCanvas.build = false;
                 gameCanvas.highlightedCities = new ArrayList<>();
                 infoButton.setVisible(true);
@@ -93,7 +119,7 @@ public class Frame extends Application {
 
                 infoButton.setOnMouseClicked(f -> {
                     infoPane.setVisible(true);
-                    infoText.setText(selectedCity.getInfo());
+                    infoText.setText(gameCanvas.selectedCity.getInfo());
                 });
             }
 
@@ -105,7 +131,7 @@ public class Frame extends Application {
             if (gameCanvas.build){
                 gameCanvas.build = false;
             }
-
+            }
         });
         gameCanvas.redraw();
 

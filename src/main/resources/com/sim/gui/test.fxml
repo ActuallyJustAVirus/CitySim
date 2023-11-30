@@ -22,6 +22,15 @@
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X"/>
                      </children>
                   </Pane>
+                  <Pane fx:id="buildPane" layoutX="200" layoutY="150" prefWidth="225" prefHeight="100" style="-fx-background-color: white" visible="false">
+                     <children>
+                        <Label fx:id="buildText" layoutX="20" layoutY="15" prefWidth="250" text="Build city from x to y?"/>
+                        <Label fx:id="buildPrice" layoutX="80" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green"/>
+                        <Button fx:id="yesBuild" layoutX="60" layoutY="60" prefWidth="50"  text="Yes"/>
+                        <Button fx:id="noBuild" layoutX="110" layoutY="60" prefWidth="50"  text="No"/>
+                     </children>
+
+                  </Pane>
                   <Pane layoutX="500" layoutY="20">
                      <children>
                         <Button fx:id="buildButton" prefWidth="50" layoutX="0" layoutY="10" mnemonicParsing="false" text="Build" visible="false"/>

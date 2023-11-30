@@ -5,6 +5,7 @@ import com.sim.CitySpace;
 import com.sim.Context;
 import com.sim.Node;
 import com.sim.World;
+import com.sim.commands.CommandBuild;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -22,6 +23,8 @@ public class GameCanvas {
     CitySpace selectedBuildCity;
 
     ArrayList<CitySpace> highlightedCities = new ArrayList<>();
+
+    CommandBuild builder;
 
 
 
@@ -79,7 +82,7 @@ public class GameCanvas {
             }
         }
 
-        if (build == true){
+        if (build){
             for (CitySpace buildableCity : highlightedCities) {
                 if (buildableCity.getName() == "Capital"){
                     gc.fillRect(buildableCity.getX()*5+17.5, buildableCity.getY()*20+2.5, 95,105);
@@ -98,7 +101,6 @@ public class GameCanvas {
                     gc.setFill(Color.BLACK);
                     gc.fillText(buildableCity.getName(), buildableCity.getX() * 5 + 30, buildableCity.getY() * 20 + 100);
                 }
-                build = false;
             }
         }
 
@@ -112,6 +114,7 @@ public class GameCanvas {
 
     public void checkBuildClicked(){
         build = true;
+        System.out.println(build);
         for (String city : selectedCity.edges.keySet()) {
             Node node = selectedCity.edges.get(city);
             if (node instanceof CitySpace){
@@ -122,24 +125,49 @@ public class GameCanvas {
     }
 
     public CitySpace checkClick(double x, double y) {
-        for (CitySpace city : world.spaces) {
-            if (city.getName() == "Capital") {
-                if (x >= city.getX() * 5+20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
+        if (build){
+            for (CitySpace city : world.spaces) {
+                if (city.getName() == "Capital") {
+                    if (x >= city.getX() * 5+20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
+                        selectedBuildCity = city;
+                        redraw();
+                        return selectedBuildCity;
+                    }
+                }
+                if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
+                    selectedBuildCity = city;
+                    redraw();
+                    return selectedBuildCity;
+                }
+            }
+        } else{
+            for (CitySpace city : world.spaces) {
+                if (city.getName() == "Capital") {
+                    if (x >= city.getX() * 5+20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
+                        selectedCity = city;
+                        redraw();
+                        return selectedCity;
+                    }
+                }
+                if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
                     selectedCity = city;
                     redraw();
                     return selectedCity;
                 }
             }
-            if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
-                selectedCity = city;
-                redraw();
-                return selectedCity;
-            }
+
         }
+
         selectedCity = null;
         highlightedCities = new ArrayList<>();
         redraw();
         return null;
+    }
+
+    void build (){
+        builder = new CommandBuild();
+        builder.execute(context, "build", new String[]{selectedBuildCity.getName()});
+        build = false;
     }
 
 }
