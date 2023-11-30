@@ -15,10 +15,12 @@
             <AnchorPane fx:id="overlay">
                <children>
                   <Label fx:id="label" layoutX="71.0" layoutY="15.0" text="Label" />
+                   <Label fx:id="Vind" layoutX="200" layoutY="150" text="Du vinder" />
                   <Button fx:id="button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                   <Pane fx:id="infoPane" layoutX="120" layoutY="100" prefWidth="400" prefHeight="200" style="-fx-background-color: white" visible="false">
                      <children>
                         <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city"/>
+                        <Label fx:id="vindtabeskærm" layoutX="370" layoutY="250" text="vind"/>
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X"/>
                      </children>
                   </Pane>
