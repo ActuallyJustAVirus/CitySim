@@ -3,26 +3,21 @@ import java.util.*;
 
 public class CitySpace extends Space {
     int x, y;
-    List<Road> roads;
-    boolean hasHospital, hasPoliceStation, hasFireStation, hasSchool, hasWorkplace;
-    private List<String> accesspoints;
+    public List<Road> roads;
+    HashMap<String, Boolean> institutions = new HashMap<>();
+    HashMap<String, Boolean> hasAccess = new HashMap<>();
+
 
     CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation, boolean hasSchool, boolean hasWorkplace) {
         super(name);
         this.x = x;
         this.y = y;
-        this.hasHospital = hasHospital;
-        this.hasPoliceStation = hasPoliceStation;
-        this.hasFireStation = hasFireStation;
-        this.hasSchool = hasSchool;
-        this.hasWorkplace = hasWorkplace;
-        this.accesspoints=new ArrayList<>();
-        // her opretter jeg en tom list kaldet accespoints.
-
+        institutions.put("Hospital", hasHospital);
+        institutions.put("Police Station", hasPoliceStation);
+        institutions.put("Fire Station", hasFireStation);
+        institutions.put("School", hasSchool);
+        institutions.put("Workplace", hasWorkplace);
     }
-        public void addAccesspoints(String accesspoint){
-            accesspoints.add(accesspoint);
-        }
 
     public int getX(){
         return this.x;
@@ -36,21 +31,36 @@ public class CitySpace extends Space {
         return this.name;
     }
 
-        public List<String> getAccesspoints(){
-            return accesspoints;
+    public int getPoints(){
+        int points = 0;
+        for (Map.Entry<String, Boolean> entry : institutions.entrySet()) {
+            if (entry.getValue()) {
+                points++; // TODO: Figure out how to add points based on population.
+                hasAccess.put(entry.getKey(), true);
+                continue;
+            }
+            for (Road road : roads) {
+                CitySpace city = roadConnectsTo(road);
+                if (city.institutions.get(entry.getKey())) {
+                    points++; // TODO: Figure out how to add points based on population.
+                    hasAccess.put(entry.getKey(), true);
+                }
+            }
         }
+        return points;
+    }
 
-
-    // Added booleans for institutions. TODO: Figure out what cities has access to what institutions.
     @Override
     public void welcome() {
         System.out.println("You are in " + name);
-        if(!accesspoints.isEmpty()){
-            System.out.println("Access points in this city");
-         for(String accespoint:accesspoints){
-             System.out.println("-"+ accesspoints);
-         }
+        
+    }
 
+    private CitySpace roadConnectsTo(Road road) {
+        if (road.connectsTo[0] == this) {
+            return road.connectsTo[1];
+        } else {
+            return road.connectsTo[0];
         }
     }
 }
