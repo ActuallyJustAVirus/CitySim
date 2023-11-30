@@ -4,7 +4,7 @@ import java.util.*;
 public class CitySpace extends Space {
     int x, y;
     int population;
-    private List<Road> roads;
+    private List<Road> roads = new ArrayList<>();
     private HashMap<String, Integer> hasAccess = new HashMap<>();
 
 
