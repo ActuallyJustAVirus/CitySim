@@ -50,6 +50,34 @@ public class CitySpace extends Space {
         return this.name;
     }
 
+    public String getInfo(){
+        String info = "";
+        info += "Name: " + name + "\n";
+        info += "X: " + x + " Y: " + y + "\n";
+        info += "Has access to: \n";
+        for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
+            info += entry.getKey() + ": ";
+            switch (entry.getValue()) {
+                case 0:
+                    info += "No access\n";
+                    break;
+                case 1:
+                    info += "Limited access\n";
+                    break;
+                case 2:
+                    info += "Good access\n";
+                    break;
+                case 3:
+                    info += "Excellent access\n";
+                    break;
+                default:
+                    break;
+            }
+        }
+        info += "Points: " + getPoints() + "\n";
+        return info;
+    }
+
     public int getPoints(){
         int points = 0;
         for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {

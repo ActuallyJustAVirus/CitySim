@@ -93,7 +93,7 @@ public class Frame extends Application {
 
                 infoButton.setOnMouseClicked(f -> {
                     infoPane.setVisible(true);
-                    infoText.setText("Information about "+selectedCity.getName());
+                    infoText.setText(selectedCity.getInfo());
                 });
             }
 
