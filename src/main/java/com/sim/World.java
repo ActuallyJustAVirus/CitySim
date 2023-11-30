@@ -11,12 +11,12 @@ public class World {
 
     public World() {
         Space map = new MapSpace(this);
-        spaces.add(new CitySpace("Capital", 45, 7, true, true, true, true, true));
-        spaces.add(new CitySpace("City", 10, 12, true, false, false, true, false));
-        spaces.add(new CitySpace("Town", 85, 3, false, true, true, false, true));
-        spaces.add(new CitySpace("Village", 5, 4, false, false,false, true, false));
-        spaces.add(new CitySpace("Hamlet", 30, 2, false,true,false,false,false));
-        spaces.add(new CitySpace("Locality", 55, 14,false, false, false, false, false));
+        spaces.add(new CitySpace("Capital", 45, 7, true, true, true, true, true, 10000));
+        spaces.add(new CitySpace("City", 10, 12, true, false, false, true, false, 5000));
+        spaces.add(new CitySpace("Town", 85, 3, false, true, true, false, true, 4000));
+        spaces.add(new CitySpace("Village", 5, 4, false, false,false, true, false, 3000));
+        spaces.add(new CitySpace("Hamlet", 30, 2, false,true,false,false,false, 2000));
+        spaces.add(new CitySpace("Locality", 55, 14,false, false, false, false, false, 1000));
 
         //TODO: Figure out what cities has access to what institutions.
 

@@ -4,7 +4,7 @@ package com.sim;
 
 public class Context {
     int tid = 0;
-
+    int points = 0;
     Space currentSpace;
     public World world;
     boolean done = false;
@@ -50,8 +50,16 @@ public class Context {
 
     public void NextTurn() { /* Method to go to next turn. */
         System.out.println("1 month later...");
+        int pointsThisRound = 0;
+        for (CitySpace city : world.spaces) {
+            pointsThisRound += city.getPoints();
+        }
+        points += pointsThisRound;
+        System.out.println("You got " + pointsThisRound + " points this round.");
+        System.out.println("You have " + points + " points in total.");
 
-        balance += world.roads.size() * 10 + 10;
+        // calculate balance
+        balance += pointsThisRound * 10 + 100;
 
         System.out.println("Your new balance is " + balance);
 

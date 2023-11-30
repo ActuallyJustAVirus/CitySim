@@ -3,14 +3,16 @@ import java.util.*;
 
 public class CitySpace extends Space {
     int x, y;
+    int population;
     private List<Road> roads;
     private HashMap<String, Integer> hasAccess = new HashMap<>();
 
 
-    CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation, boolean hasSchool, boolean hasWorkplace) {
+    CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation, boolean hasSchool, boolean hasWorkplace, int population) {
         super(name);
         this.x = x;
         this.y = y;
+        this.population = population;
         if (hasHospital) {
             hasAccess.put("Hospital", 3);
         } else {
@@ -53,7 +55,7 @@ public class CitySpace extends Space {
     public String getInfo(){
         String info = "";
         info += "Name: " + name + "\n";
-        info += "X: " + x + " Y: " + y + "\n";
+        info += "Population: " + population + "\n";
         info += "Has access to: \n";
         for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
             info += entry.getKey() + ": ";
@@ -82,7 +84,8 @@ public class CitySpace extends Space {
         int points = 0;
         for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
             if (entry.getValue() > 0) {
-                points ++; // TODO make it based on population
+                int pointsToAdd = (population/1000) * entry.getValue(); // TODO: Make this better
+                points += pointsToAdd; 
             }
         }
         return points;
