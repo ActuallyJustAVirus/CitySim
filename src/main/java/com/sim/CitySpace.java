@@ -3,20 +3,39 @@ import java.util.*;
 
 public class CitySpace extends Space {
     int x, y;
-    public List<Road> roads;
-    HashMap<String, Boolean> institutions = new HashMap<>();
-    HashMap<String, Boolean> hasAccess = new HashMap<>();
+    private List<Road> roads;
+    private HashMap<String, Integer> hasAccess = new HashMap<>();
 
 
     CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation, boolean hasSchool, boolean hasWorkplace) {
         super(name);
         this.x = x;
         this.y = y;
-        institutions.put("Hospital", hasHospital);
-        institutions.put("Police Station", hasPoliceStation);
-        institutions.put("Fire Station", hasFireStation);
-        institutions.put("School", hasSchool);
-        institutions.put("Workplace", hasWorkplace);
+        if (hasHospital) {
+            hasAccess.put("Hospital", 3);
+        } else {
+            hasAccess.put("Hospital", 0);
+        }
+        if (hasPoliceStation) {
+            hasAccess.put("Police Station", 3);
+        } else {
+            hasAccess.put("Police Station", 0);
+        }
+        if (hasFireStation) {
+            hasAccess.put("Fire Station", 3);
+        } else {
+            hasAccess.put("Fire Station", 0);
+        }
+        if (hasSchool) {
+            hasAccess.put("School", 3);
+        } else {
+            hasAccess.put("School", 0);
+        }
+        if (hasWorkplace) {
+            hasAccess.put("Workplace", 3);
+        } else {
+            hasAccess.put("Workplace", 0);
+        }
     }
 
     public int getX(){
@@ -33,21 +52,36 @@ public class CitySpace extends Space {
 
     public int getPoints(){
         int points = 0;
-        for (Map.Entry<String, Boolean> entry : institutions.entrySet()) {
-            if (entry.getValue()) {
-                points++; // TODO: Figure out how to add points based on population.
-                hasAccess.put(entry.getKey(), true);
-                continue;
-            }
-            for (Road road : roads) {
-                CitySpace city = roadConnectsTo(road);
-                if (city.institutions.get(entry.getKey())) {
-                    points++; // TODO: Figure out how to add points based on population.
-                    hasAccess.put(entry.getKey(), true);
-                }
+        for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
+            if (entry.getValue() > 0) {
+                points ++; // TODO make it based on population
             }
         }
         return points;
+    }
+
+    public void updateAccess(String type, int amount){
+        if (hasAccess.containsKey(type) && hasAccess.get(type) < amount) {
+            hasAccess.put(type, amount);
+        }
+        if (amount > 1) {
+            for (Road road : roads) {
+                CitySpace otherCity = roadConnectsTo(road);
+                otherCity.updateAccess(type, amount - 1);
+            }
+        }
+    }
+
+    public void addRoad(Road road) {
+        if (roads == null) {
+            roads = new ArrayList<>();
+        }
+        roads.add(road);
+        for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
+            if (entry.getValue() > 1) {
+                updateAccess(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     @Override

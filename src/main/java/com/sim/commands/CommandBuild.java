@@ -73,8 +73,8 @@ public class CommandBuild extends BaseCommand {
             }
             Road road = new Road(city, city2);
             context.world.roads.add(road);
-            city.roads.add(road);
-            city2.roads.add(road);
+            city.addRoad(road);
+            city2.addRoad(road);
             System.out.println("You have built a road from " + city.getName() + " to " + cityInput);
 
             context.balance -= context.getPrice(city2,city);
