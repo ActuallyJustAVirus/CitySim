@@ -64,8 +64,8 @@ public class Frame extends Application {
 
         nextTurnButton.setOnMouseClicked(e->{
             context.NextTurn();
-
         });
+
         closeInfo.setOnMouseClicked(e -> {
             infoPane.setVisible(false);
         });
