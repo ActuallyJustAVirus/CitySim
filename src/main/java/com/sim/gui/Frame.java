@@ -2,6 +2,7 @@ package com.sim.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.sim.CitySpace;
 import com.sim.Context;
@@ -26,7 +27,7 @@ public class Frame extends Application {
 
     private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
 
-    private static Label infoText, inventoryLabel, buildText;
+    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel;
 
     private static Pane infoPane,inventoryPane, buildPane;
 
@@ -61,9 +62,14 @@ public class Frame extends Application {
         buildText = (Label) scene.lookup("#buildText");
         yesBuild = (Button) scene.lookup("#yesBuild");
         noBuild = (Button) scene.lookup("#noBuild");
+        moneyLabel = (Label) scene.lookup("#moneyLabel");
+        dayLabel = (Label) scene.lookup("#dayLabel");
+
+        updateLabel();
 
         nextTurnButton.setOnMouseClicked(e->{
             context.NextTurn();
+            updateLabel();
         });
 
         closeInfo.setOnMouseClicked(e -> {
@@ -148,6 +154,11 @@ public class Frame extends Application {
         return fxmlLoader.load();
     }
 
+    private void updateLabel(){
+        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+
+        dayLabel.setText(context.getGameTime());
+    }
 
     public static void main(String[] args) {
         world = new World();
