@@ -28,13 +28,13 @@
                      </children>
 
                   </Pane>
-                  <Pane layoutX="500" layoutY="20">
+                  <Pane layoutX="10" layoutY="10">
                      <children>
-                        <Button fx:id="buildButton" layoutX="145" layoutY="10" mnemonicParsing="false" prefWidth="80" text="Build Mode" visible="false" />
-                        <Button fx:id="infoButton" layoutX="225" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Info" visible="false" />
+                        <Button fx:id="buildButton" layoutX="0" layoutY="10" mnemonicParsing="false" prefWidth="80" text="Build Mode" visible="false" />
+                        <Button fx:id="infoButton" layoutX="80" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Info" visible="false" />
                      </children>
                   </Pane>
-                  <Pane fx:id="inventoryPane" layoutX="120" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="inventoryPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
                         <Label fx:id="inventoryText" layoutX="100" layoutY="100" />
                         <Button fx:id="closeInventory" layoutX="365" layoutY="10" text="X" />
