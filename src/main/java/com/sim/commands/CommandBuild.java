@@ -49,7 +49,15 @@ public class CommandBuild extends BaseCommand {
 
             System.out.println("Build a road to: ");
             System.out.print("> ");
+
+            if(parameters[0] == null){
             cityInput = scanner.next();
+            }
+
+            else{
+                cityInput = parameters[0];
+            }
+
             CitySpace city2 = (CitySpace) city.followEdge(cityInput);
 
             if (city2 == null){
