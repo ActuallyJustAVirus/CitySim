@@ -26,7 +26,7 @@ public class Frame extends Application {
 
     private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
 
-    private static Label infoText, inventoryLabel, buildText;
+    private static Label infoText, inventoryLabel, buildText, Win,Lose;
 
     private static Pane infoPane,inventoryPane, buildPane;
 
@@ -63,6 +63,23 @@ public class Frame extends Application {
         noBuild = (Button) scene.lookup("#noBuild");
 
         nextTurnButton.setOnMouseClicked(e->{
+            Win=(Label)scene.lookup("#Win");
+
+            if(context.antalveje==world.roads.size()){
+                Win.setVisible(true);
+                
+            }
+              Lose=(Label)scene.lookup("#Lose");
+              if(context.tid>context.max){
+                Lose.setVisible(true); 
+
+              }
+                   
+
+
+
+
+
             context.NextTurn();
 
         });

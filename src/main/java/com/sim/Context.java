@@ -3,7 +3,10 @@ package com.sim;
  */
 
 public class Context {
-    int tid = 0;
+    public int tid = 0;
+    public int max = 5;
+    public int antalveje = 10;
+    
     int points = 0;
     Space currentSpace;
     public World world;
@@ -64,12 +67,12 @@ public class Context {
         System.out.println("Your new balance is " + balance);
 
         tid++;
-        int max = 5;
+        
         if (tid > max) {
             System.out.println("you lose");
         }
 
-        int antalveje = 10;
+        
         if (antalveje == world.roads.size()) {
             System.out.println("you win");
 
