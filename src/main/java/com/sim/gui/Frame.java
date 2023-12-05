@@ -77,7 +77,13 @@ public class Frame extends Application {
         });
 
         buildButton.setOnMouseClicked(e -> {
-            gameCanvas.checkBuildClicked();
+            if (gameCanvas.build){
+                gameCanvas.build = false;
+                gameCanvas.redraw();
+            }
+            else {
+                gameCanvas.checkBuildClicked();
+            }
         });
 
         inventoryButton.setOnMouseClicked(e -> {
@@ -101,7 +107,6 @@ public class Frame extends Application {
 
         noBuild.setOnMouseClicked(e -> {
             buildPane.setVisible(false);
-            gameCanvas.build = false;
             gameCanvas.redraw();
         });
 

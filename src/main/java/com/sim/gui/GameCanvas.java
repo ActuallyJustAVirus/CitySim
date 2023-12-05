@@ -11,6 +11,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import com.sim.Road;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
 
@@ -52,6 +55,17 @@ public class GameCanvas {
         gc.setFill(Color.GRAY);
         gc.setFill((Color.BLACK));
 
+        gc.drawImage(pond,375,125,150,150);
+        gc.drawImage(pond,80,150,150,150);
+
+        gc.drawImage(mountain,350,10,100,100);
+        gc.drawImage(mountain,400,20,100,100);
+        gc.drawImage(mountain,320,30,100,100);
+
+        gc.drawImage(mountain,430,260,100,100);
+        gc.drawImage(mountain,460,270,100,100);
+        gc.drawImage(mountain,400,280,100,100);
+
         for (Road road : world.roads) { //TODO: Draw roads: Work in progress
             CitySpace from = road.connectsTo[0];
             CitySpace to = road.connectsTo[1];
@@ -62,6 +76,7 @@ public class GameCanvas {
             gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
 
             gc.setLineWidth(5);
+            gc.setLineDashes(25);
             gc.setStroke(Color.WHITE);
 
             gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
@@ -72,7 +87,7 @@ public class GameCanvas {
                 if (selectedCity == cityspaces) {
                     gc.setFill(Color.GRAY);
                 } else {
-                    gc.setFill(Color.DIMGRAY);
+                    gc.setFill(Color.DARKKHAKI);
                 }
                 gc.fillOval(cityspaces.getX() * 5, cityspaces.getY() * 20 + 35, 125, 75);
                 if (cityspaces.getName() == "Aurelia") {
@@ -105,10 +120,6 @@ public class GameCanvas {
             }
         }
 
-
-        gc.drawImage(pond,375,200,150,150);
-        gc.drawImage(pond,80,150,150,150);
-        gc.drawImage(mountain,300,40,100,100);
 
     }
 
@@ -146,13 +157,13 @@ public class GameCanvas {
         } else{
             for (CitySpace city : world.spaces) {
                 if (city.getName() == "Aurelia") {
-                    if (x >= city.getX() * 5+20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
+                    if (x >= city.getX() * 5+10 && x <= city.getX() * 5 + 120 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
                         selectedCity = city;
                         redraw();
                         return selectedCity;
                     }
                 }
-                if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
+                if (x >= city.getX() * 5+10 && x <= city.getX() * 5 + 120 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
                     selectedCity = city;
                     redraw();
                     return selectedCity;

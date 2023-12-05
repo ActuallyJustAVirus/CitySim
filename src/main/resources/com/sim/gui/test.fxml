@@ -13,26 +13,24 @@
             <Canvas fx:id="canvas" height="420.0" width="800.0" />
             <AnchorPane fx:id="overlay">
                <children>
-                  <Label fx:id="label" layoutX="71.0" layoutY="15.0" text="Label" />
-                  <Button fx:id="button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                   <Pane fx:id="infoPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
                         <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city" />
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X" />
                      </children>
                   </Pane>
-                  <Pane fx:id="buildPane" layoutX="200" layoutY="150" prefHeight="100" prefWidth="225" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="buildPane" layoutX="275" layoutY="150" prefHeight="100" prefWidth="250" style="-fx-background-color: white" visible="false">
                      <children>
                         <Label fx:id="buildText" layoutX="20" layoutY="15" prefWidth="250" text="Build city from x to y?" />
-                        <Label fx:id="buildPrice" layoutX="80" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green" />
-                        <Button fx:id="yesBuild" layoutX="60" layoutY="60" prefWidth="50" text="Yes" />
-                        <Button fx:id="noBuild" layoutX="110" layoutY="60" prefWidth="50" text="No" />
+                        <Label fx:id="buildPrice" layoutX="100" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green" />
+                        <Button fx:id="yesBuild" layoutX="75" layoutY="60" prefWidth="50" text="Yes" />
+                        <Button fx:id="noBuild" layoutX="125" layoutY="60" prefWidth="50" text="No" />
                      </children>
 
                   </Pane>
                   <Pane layoutX="500" layoutY="20">
                      <children>
-                        <Button fx:id="buildButton" layoutX="175" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Build" visible="false" />
+                        <Button fx:id="buildButton" layoutX="145" layoutY="10" mnemonicParsing="false" prefWidth="80" text="Build Mode" visible="false" />
                         <Button fx:id="infoButton" layoutX="225" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Info" visible="false" />
                      </children>
                   </Pane>
