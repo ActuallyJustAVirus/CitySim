@@ -124,6 +124,10 @@ public class GameCanvas {
         for (String city : selectedCity.edges.keySet()) {
             Node node = selectedCity.edges.get(city);
             if (node instanceof CitySpace){
+                CitySpace city2 = (CitySpace) node;
+                if (selectedCity.hasAccessTo(city2)) {
+                    continue;
+                }
                 highlightedCities.add((CitySpace) node);
             }
         }

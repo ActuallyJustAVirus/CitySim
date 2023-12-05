@@ -128,4 +128,13 @@ public class CitySpace extends Space {
             return road.connectsTo[0];
         }
     }
+
+    public boolean hasAccessTo(CitySpace city) {
+        for (Road road : roads) {
+            if (roadConnectsTo(road) == city) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
