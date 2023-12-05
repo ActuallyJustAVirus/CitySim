@@ -59,23 +59,7 @@ public class GameCanvas {
             gc.setLineWidth(50);
             gc.setStroke(Color.DIMGRAY);
 
-            if (road.connectsTo[0].getName() == "Capital" || road.connectsTo[1].getName() == "Capital") { //If the road is connected to the capital
-                if (road.connectsTo[0].getX() > road.connectsTo[1].getX()) { //If the city you're building to is to the west of the city you're building from
-                    gc.setStroke(Color.ORANGE);
-                    gc.strokeLine(from.getX() * 6.5, from.getY() *28, to.getX() * 7, to.getY() * 35);
-                } else {
-                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 6+40, to.getY() * 42);
-                }
-            }
-
-            else {
-                if (road.connectsTo[0].getX() > road.connectsTo[1].getX()) {  //If the city you're building to is to the west of the city you're building from
-                    gc.setStroke(Color.ORANGE);
-                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 7, to.getY() * 35);
-                } else {
-                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 6, to.getY() * 42);
-                }
-            }
+            gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
         }
 
         for (CitySpace cityspaces: world.spaces) {
