@@ -80,9 +80,13 @@ public class GameCanvas {
 
         for (CitySpace cityspaces: world.spaces) {
             if (cityspaces.getName() == "Capital"){
+                gc.setFill(Color.SEAGREEN);
+                gc.fillOval(cityspaces.getX()*5,cityspaces.getY()*22,125,75);
                 gc.drawImage(capitalCity, cityspaces.getX()*5+25,cityspaces.getY()*20+10,75,75);
             }
             else {
+                gc.setFill(Color.SEAGREEN);
+                gc.fillOval(cityspaces.getX()*5,cityspaces.getY()*20,125,75);
                 gc.drawImage(city, cityspaces.getX()*5, cityspaces.getY()*20, 125,125);
             }
             gc.fillText(cityspaces.getName(), cityspaces.getX()*5+30, cityspaces.getY()*20+100);
