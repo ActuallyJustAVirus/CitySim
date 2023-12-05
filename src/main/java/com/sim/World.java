@@ -11,16 +11,18 @@ public class World {
 
     public World() {
         Space map = new MapSpace(this);
-        spaces.add(new CitySpace("Capital", 45, 7, true, true, true, true, true, 10000));
-        spaces.add(new CitySpace("City", 10, 12, true, false, false, true, false, 5000));
-        spaces.add(new CitySpace("Town", 85, 3, false, true, true, false, true, 4000));
-        spaces.add(new CitySpace("Village", 5, 4, false, false,false, true, false, 3000));
-        spaces.add(new CitySpace("Hamlet", 30, 2, false,true,false,false,false, 2000));
-        spaces.add(new CitySpace("Locality", 55, 14,false, false, false, false, false, 1000));
+        spaces.add(new CitySpace("Aurelia", 45, 7, true, true, true, true, true, 10000));
+        spaces.add(new CitySpace("Maravelle", 10, 12, true, false, false, true, false, 5000));
+        spaces.add(new CitySpace("Ombasi", 85, 3, false, true, true, false, true, 4000));
+        spaces.add(new CitySpace("Verdania", 5, 4, false, false,false, true, false, 3000));
+        spaces.add(new CitySpace("Quetzal", 30, 2, false,true,false,false,false, 2000));
+        spaces.add(new CitySpace("Naranga", 55, 14,false, false, false, false, false, 1000));
+        spaces.add(new CitySpace("Solanara", 100, 8, true, false, true, true, true, 6000));
+
 
         //TODO: Figure out what cities has access to what institutions.
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 7; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
         }
 
