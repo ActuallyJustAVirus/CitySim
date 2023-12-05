@@ -5,42 +5,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.TextFlow?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
    <children>
       <StackPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <Canvas fx:id="canvas" height="400.0" width="640.0" />
+            <Canvas fx:id="canvas" height="420.0" width="800.0" />
             <AnchorPane fx:id="overlay">
                <children>
                   <Label fx:id="label" layoutX="71.0" layoutY="15.0" text="Label" />
                   <Button fx:id="button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
-                  <Pane fx:id="infoPane" layoutX="120" layoutY="100" prefWidth="400" prefHeight="200" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="infoPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city"/>
-                        <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X"/>
+                        <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city" />
+                        <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X" />
                      </children>
                   </Pane>
-                  <Pane fx:id="buildPane" layoutX="200" layoutY="150" prefWidth="225" prefHeight="100" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="buildPane" layoutX="200" layoutY="150" prefHeight="100" prefWidth="225" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="buildText" layoutX="20" layoutY="15" prefWidth="250" text="Build city from x to y?"/>
-                        <Label fx:id="buildPrice" layoutX="80" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green"/>
-                        <Button fx:id="yesBuild" layoutX="60" layoutY="60" prefWidth="50"  text="Yes"/>
-                        <Button fx:id="noBuild" layoutX="110" layoutY="60" prefWidth="50"  text="No"/>
+                        <Label fx:id="buildText" layoutX="20" layoutY="15" prefWidth="250" text="Build city from x to y?" />
+                        <Label fx:id="buildPrice" layoutX="80" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green" />
+                        <Button fx:id="yesBuild" layoutX="60" layoutY="60" prefWidth="50" text="Yes" />
+                        <Button fx:id="noBuild" layoutX="110" layoutY="60" prefWidth="50" text="No" />
                      </children>
 
                   </Pane>
                   <Pane layoutX="500" layoutY="20">
                      <children>
-                        <Button fx:id="buildButton" prefWidth="50" layoutX="0" layoutY="10" mnemonicParsing="false" text="Build" visible="false"/>
-                        <Button fx:id="infoButton" prefWidth="50" layoutX="50" layoutY="10" mnemonicParsing="false" text="Info" visible="false"/>
+                        <Button fx:id="buildButton" layoutX="175" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Build" visible="false" />
+                        <Button fx:id="infoButton" layoutX="225" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Info" visible="false" />
                      </children>
                   </Pane>
-                  <Pane fx:id="inventoryPane" layoutX="120" layoutY="100" prefWidth="400" prefHeight="200" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="inventoryPane" layoutX="120" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="inventoryText" layoutX="100" layoutY="100"/>
-                        <Button fx:id="closeInventory" layoutX="365" layoutY="10" text="X"/>
+                        <Label fx:id="inventoryText" layoutX="100" layoutY="100" />
+                        <Button fx:id="closeInventory" layoutX="365" layoutY="10" text="X" />
                      </children>
                   </Pane>
                </children>
@@ -52,7 +51,7 @@
             <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
             <Button fx:id="inventoryButton" mnemonicParsing="false" text="Open Inventory" />
             <Button fx:id="button3" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
-            <Button fx:id="nextturn" mnemonicParsing="false" text="nextturn"/>                            
+            <Button fx:id="nextturn" mnemonicParsing="false" text="nextturn" />                            
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -63,4 +62,3 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
-

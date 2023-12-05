@@ -39,7 +39,7 @@ public class Frame extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        scene = new Scene(loadFXML("test"), 640, 480);
+        scene = new Scene(loadFXML("test"), 800, 500);
         stage.setScene(scene);
         stage.show();
         canvas = (Canvas) scene.lookup("#canvas");
