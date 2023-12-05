@@ -57,7 +57,12 @@ public class GameCanvas {
             CitySpace to = road.connectsTo[1];
 
             gc.setLineWidth(50);
-            gc.setStroke(Color.DIMGRAY);
+            gc.setStroke(Color.BLACK);
+
+            gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
+
+            gc.setLineWidth(5);
+            gc.setStroke(Color.WHITE);
 
             gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
         }
@@ -99,8 +104,6 @@ public class GameCanvas {
                 }
             }
         }
-
-
 
 
         gc.drawImage(pond,375,200,150,150);
