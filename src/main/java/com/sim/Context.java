@@ -4,12 +4,15 @@ package com.sim;
 
 public class Context {
     int tid = 0;
+    int max = 72;   //12 months * 6 years = 72 max rounds.
     int points = 0;
     Space currentSpace;
     public World world;
     boolean done = false;
     public int balance = 100;
     public Inventory inv = new Inventory();
+    public String[] gameMonth = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    public int gameYear = 2024;
 
     public Context(World world) {
         this.world = world;
@@ -64,10 +67,14 @@ public class Context {
         System.out.println("Your new balance is " + balance);
 
         tid++;
-        int max = 5;
-        if (tid > max) {
-            System.out.println("you lose");
+
+        if (tid % 12 == 0){
+            gameYear++;
         }
+        else if (tid > max) {
+                System.out.println("you lose");
+        }
+
 
         int antalveje = 10;
         if (antalveje == world.roads.size()) {
@@ -77,6 +84,11 @@ public class Context {
     }
     public void GetBalance() {
         System.out.println("Your balance is " + balance);
+
+    }
+
+    public String getGameTime(){
+        return(gameMonth[(tid % 12)] + " " + gameYear);
 
     }
 

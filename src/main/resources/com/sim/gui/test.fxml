@@ -47,17 +47,22 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <HBox alignment="CENTER" prefHeight="15.0" prefWidth="640.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="15.0" prefWidth="500.0" spacing="20.0"> <!--prefWidth was 640 default -->
          <children>
-            <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
             <Button fx:id="inventoryButton" mnemonicParsing="false" text="Open Inventory" />
-            <Button fx:id="button3" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
-            <Button fx:id="nextturn" mnemonicParsing="false" text="nextturn"/>                            
+            <Button fx:id="nextturn" mnemonicParsing="false" text="nextturn"/>
+            <HBox alignment="BASELINE_LEFT" prefHeight="15.0" prefWidth="140">
+               <children>
+                  <Label fx:id="dayLabel" text="hoello"/>
+                  <Label fx:id="moneyLabel"/>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
+
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
