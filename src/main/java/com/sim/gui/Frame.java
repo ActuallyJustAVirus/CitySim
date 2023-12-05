@@ -102,35 +102,40 @@ public class Frame extends Application {
         overlay.setOnMouseClicked(e -> {
             if (gameCanvas.build){
                 gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
-                buildPane.setVisible(true);
-                buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
-            }
-
-            else{
+                for (CitySpace ccas : gameCanvas.highlightedCities) {
+                    if (ccas == gameCanvas.selectedBuildCity) {
+                        buildPane.setVisible(true);
+                        buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
+                        return;
+                    }
+                }
+                if (gameCanvas.selectedCity != null && gameCanvas.selectedBuildCity == gameCanvas.selectedCity) return;
+                gameCanvas.build = false;
+                buildButton.setVisible(false);
+                infoButton.setVisible(false);
+                buildPane.setVisible(false);
+            } else {
                 gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
                 context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
 
-            if (gameCanvas.selectedCity != null) {
-                context.transition(gameCanvas.selectedCity.getName());
-                gameCanvas.build = false;
-                gameCanvas.highlightedCities = new ArrayList<>();
-                infoButton.setVisible(true);
-                buildButton.setVisible(true);
+                if (gameCanvas.selectedCity != null) {
+                    context.transition(gameCanvas.selectedCity.getName());
+                    gameCanvas.build = false;
+                    gameCanvas.highlightedCities = new ArrayList<>();
+                    infoButton.setVisible(true);
+                    buildButton.setVisible(true);
 
-                infoButton.setOnMouseClicked(f -> {
-                    infoPane.setVisible(true);
-                    infoText.setText(gameCanvas.selectedCity.getInfo());
-                });
-            }
-
-            else {
-                infoButton.setVisible(false);
-                buildButton.setVisible(false);
-            }
-
-            if (gameCanvas.build){
-                gameCanvas.build = false;
-            }
+                    infoButton.setOnMouseClicked(f -> {
+                        infoPane.setVisible(true);
+                        infoText.setText(gameCanvas.selectedCity.getInfo());
+                    });
+                } else {
+                    infoButton.setVisible(false);
+                    buildButton.setVisible(false);
+                }
+                if (gameCanvas.build){
+                    gameCanvas.build = false;
+                }
             }
         });
         gameCanvas.redraw();
