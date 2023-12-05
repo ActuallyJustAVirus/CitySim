@@ -11,7 +11,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import com.sim.Road;
-import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
@@ -53,52 +52,47 @@ public class GameCanvas {
         gc.setFill(Color.GRAY);
         gc.setFill((Color.BLACK));
 
+        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
+            CitySpace from = road.connectsTo[0];
+            CitySpace to = road.connectsTo[1];
+
+            gc.setLineWidth(50);
+            gc.setStroke(Color.DIMGRAY);
+
+            gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
+        }
+
+
         for (CitySpace cityspaces: world.spaces) {
-            if (cityspaces.getName() == "Capital"){
-                gc.drawImage(capitalCity, cityspaces.getX()*5+25,cityspaces.getY()*20+10,75,75);
-            }
-            else {
-                gc.drawImage(city, cityspaces.getX()*5, cityspaces.getY()*20, 125,125);
-            }
-            gc.fillText(cityspaces.getName(), cityspaces.getX()*5+30, cityspaces.getY()*20+100);
+                if (selectedCity == cityspaces) {
+                    gc.setFill(Color.GRAY);
+                } else {
+                    gc.setFill(Color.DIMGRAY);
+                }
+                gc.fillOval(cityspaces.getX() * 5, cityspaces.getY() * 20 + 35, 125, 75);
+                if (cityspaces.getName() == "Capital") {
+                    gc.drawImage(capitalCity, cityspaces.getX() * 5 + 25, cityspaces.getY() * 20 + 10, 75, 75);
+                } else {
+                    gc.drawImage(city, cityspaces.getX() * 5, cityspaces.getY() * 20, 125, 125);
+                }
 
-        }
-
-        if (selectedCity != null){
-            if (selectedCity.getName() == "Capital"){
-                gc.fillRect(selectedCity.getX()*5+17.5, selectedCity.getY()*20+2.5, 95,105);
-                gc.setFill(Color.OLIVEDRAB);
-                gc.fillRect(selectedCity.getX()*5+20, selectedCity.getY()*20+5, 90,100);
-                gc.drawImage(capitalCity,selectedCity.getX()*5+25, selectedCity.getY()*20+10,75,75);
                 gc.setFill(Color.BLACK);
-                gc.fillText(selectedCity.getName(),selectedCity.getX()*5+30, selectedCity.getY()*20+100 );
+                gc.fillText(cityspaces.getName(), cityspaces.getX() * 5 + 30, cityspaces.getY() * 20 + 100);
             }
-            else{
-                gc.fillRect(selectedCity.getX()*5+17.5, selectedCity.getY()*20+17.5, 95,95);
-                gc.setFill(Color.OLIVEDRAB);
-                gc.fillRect(selectedCity.getX()*5+20, selectedCity.getY()*20+20, 90,90);
-                gc.drawImage(city,selectedCity.getX()*5, selectedCity.getY()*20,125,125);
-                gc.setFill(Color.BLACK);
-                gc.fillText(selectedCity.getName(),selectedCity.getX()*5+30, selectedCity.getY()*20+100 );
-
-            }
-        }
 
         if (build){
             for (CitySpace buildableCity : highlightedCities) {
                 if (buildableCity.getName() == "Capital"){
-                    gc.fillRect(buildableCity.getX()*5+17.5, buildableCity.getY()*20+2.5, 95,105);
                     gc.setFill(Color.ORANGE);
-                    gc.fillRect(buildableCity.getX()*5+20, buildableCity.getY()*20+5, 90,100);
+                    gc.fillOval(buildableCity.getX()*5,buildableCity.getY()*20+35,125,75);
                     gc.drawImage(capitalCity,buildableCity.getX()*5+25, buildableCity.getY()*20+10,75,75);
                     gc.setFill(Color.BLACK);
                     gc.fillText(buildableCity.getName(),buildableCity.getX()*5+30, buildableCity.getY()*20+100 );
                 }
 
                 else {
-                    gc.fillRect(buildableCity.getX() * 5 + 17.5, buildableCity.getY() * 20 + 17.5, 95, 95);
                     gc.setFill(Color.ORANGE);
-                    gc.fillRect(buildableCity.getX() * 5 + 20, buildableCity.getY() * 20 + 20, 90, 90);
+                    gc.fillOval(buildableCity.getX()*5,buildableCity.getY()*20+35,125,75);
                     gc.drawImage(city, buildableCity.getX() * 5, buildableCity.getY() * 20, 125, 125);
                     gc.setFill(Color.BLACK);
                     gc.fillText(buildableCity.getName(), buildableCity.getX() * 5 + 30, buildableCity.getY() * 20 + 100);
@@ -106,11 +100,8 @@ public class GameCanvas {
             }
         }
 
-        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
-            CitySpace from = road.connectsTo[0];
-            CitySpace to = road.connectsTo[1];
 
-        }
+
 
         gc.drawImage(pond,375,200,150,150);
         gc.drawImage(pond,80,150,150,150);
@@ -120,7 +111,6 @@ public class GameCanvas {
 
     public void checkBuildClicked(){
         build = true;
-        System.out.println(build);
         for (String city : selectedCity.edges.keySet()) {
             Node node = selectedCity.edges.get(city);
             if (node instanceof CitySpace){
