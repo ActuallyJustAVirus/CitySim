@@ -11,7 +11,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import com.sim.Road;
-import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
@@ -52,6 +51,32 @@ public class GameCanvas {
         gc.fillRect(0, 0, 10000, 10000);
         gc.setFill(Color.GRAY);
         gc.setFill((Color.BLACK));
+
+        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
+            CitySpace from = road.connectsTo[0];
+            CitySpace to = road.connectsTo[1];
+
+            gc.setLineWidth(50);
+            gc.setStroke(Color.DIMGRAY);
+
+            if (road.connectsTo[0].getName() == "Capital" || road.connectsTo[1].getName() == "Capital") { //If the road is connected to the capital
+                if (road.connectsTo[0].getX() > road.connectsTo[1].getX()) { //If the city you're building to is to the west of the city you're building from
+                    gc.setStroke(Color.ORANGE);
+                    gc.strokeLine(from.getX() * 6.5, from.getY() *28, to.getX() * 7, to.getY() * 35);
+                } else {
+                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 6+40, to.getY() * 42);
+                }
+            }
+
+            else {
+                if (road.connectsTo[0].getX() > road.connectsTo[1].getX()) {  //If the city you're building to is to the west of the city you're building from
+                    gc.setStroke(Color.ORANGE);
+                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 7, to.getY() * 35);
+                } else {
+                    gc.strokeLine(from.getX() * 6.5, from.getY() * 28, to.getX() * 6, to.getY() * 42);
+                }
+            }
+        }
 
         for (CitySpace cityspaces: world.spaces) {
             if (cityspaces.getName() == "Capital"){
@@ -104,12 +129,6 @@ public class GameCanvas {
                     gc.fillText(buildableCity.getName(), buildableCity.getX() * 5 + 30, buildableCity.getY() * 20 + 100);
                 }
             }
-        }
-
-        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
-            CitySpace from = road.connectsTo[0];
-            CitySpace to = road.connectsTo[1];
-
         }
 
         gc.drawImage(pond,375,200,150,150);
