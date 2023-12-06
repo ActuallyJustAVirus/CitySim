@@ -3,8 +3,8 @@ package com.sim;
  */
 
 public class Context {
-    int tid = 0;
-    int max = 72;   //12 months * 6 years = 72 max rounds.
+    public int tid = 0;
+    public int max = 72;   //12 months * 6 years = 72 max rounds.
     public int antalveje = 10;
     int points = 0;
     Space currentSpace;
