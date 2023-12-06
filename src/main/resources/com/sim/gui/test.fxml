@@ -3,11 +3,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-
-<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
    <children>
       <StackPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -21,13 +19,13 @@
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X" />
                      </children>
                   </Pane>
-                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefWidth="300" prefHeight="200" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefHeight="200" prefWidth="300" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="itemName" layoutX="100" layoutY="20" text="Information about item"/>
+                        <Label fx:id="itemName" layoutX="100" layoutY="20" text="Information about item" />
                         <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="200.0" layoutX="90.0" layoutY="35" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Label fx:id="itemDescription" layoutX="100" layoutY="150" text="Description"/>
-                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="170" text="Collect Item"/>
+                        <Label fx:id="itemDescription" layoutX="100" layoutY="150" text="Description" />
+                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="170" text="Collect Item" />
                      </children>
                   </Pane>
                   <Pane fx:id="buildPane" layoutX="275" layoutY="150" prefHeight="100" prefWidth="250" style="-fx-background-color: white" visible="false">
@@ -36,15 +34,15 @@
                         <Label fx:id="buildPrice" alignment="CENTER" layoutY="35" prefWidth="250" textFill="green" />
                         <Button fx:id="yesBuild" layoutX="75" layoutY="60" prefWidth="50" text="Yes" />
                         <Button fx:id="noBuild" layoutX="125" layoutY="60" prefWidth="50" text="No" />
-                        <Button fx:id="okBuild" layoutX="100" layoutY="70" prefWidth="50" text="Close" visible="false"/>
+                        <Button fx:id="okBuild" layoutX="100" layoutY="70" prefWidth="50" text="Close" visible="false" />
                         <Label fx:id="brokeText" layoutX="75" layoutY="50" prefWidth="150" text="Insufficient Funds!" textFill="red" visible="false" />
                      </children>
 
                   </Pane>
                   <Pane layoutX="10" layoutY="10">
                      <children>
-                        <Button fx:id="buildButton" layoutX="0" layoutY="10" mnemonicParsing="false" prefWidth="80" text="Build Mode" visible="false" style="-fx-font-weight: bold"/>
-                        <Button fx:id="infoButton" layoutX="80" layoutY="10" mnemonicParsing="false" prefWidth="50" text="Info" visible="false" style="-fx-font-weight: bold"/>
+                        <Button fx:id="buildButton" layoutX="0" layoutY="10" mnemonicParsing="false" prefWidth="80" style="-fx-font-weight: bold" text="Build Mode" visible="false" />
+                        <Button fx:id="infoButton" layoutX="80" layoutY="10" mnemonicParsing="false" prefWidth="50" style="-fx-font-weight: bold" text="Info" visible="false" />
                      </children>
                   </Pane>
                   <Pane fx:id="inventoryPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
@@ -59,12 +57,20 @@
       </StackPane>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="inventoryButton" mnemonicParsing="false" text="Inventory" style="-fx-font-weight: bold"/>
-            <Button fx:id="nextturn" mnemonicParsing="false" text="Next" style="-fx-font-weight: bold"/>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="15.0" prefWidth="140">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="530.0">
                <children>
-                  <Label fx:id="dayLabel"/>
-                  <Label fx:id="moneyLabel"/>
+                  <VBox>
+                     <children>
+                  <Label fx:id="dayLabel" />
+                  <Label fx:id="moneyLabel" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Button fx:id="inventoryButton" mnemonicParsing="false" style="-fx-font-weight: bold" text="Inventory" />
+                  <Button fx:id="nextturn" mnemonicParsing="false" style="-fx-font-weight: bold" text="Next" />
                </children>
             </HBox>
          </children>
@@ -77,4 +83,3 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
-
