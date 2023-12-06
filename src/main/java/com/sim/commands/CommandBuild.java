@@ -50,7 +50,7 @@ public class CommandBuild extends BaseCommand {
             System.out.println("Build a road to: ");
             System.out.print("> ");
 
-            if(parameters[0] == null){ //TODO: build command virker ikke i "Game".
+            if(parameters.length==0){
             cityInput = scanner.next();
             }
 

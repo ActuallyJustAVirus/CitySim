@@ -26,15 +26,18 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, continueButton;
 
-    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel;
+    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel;
 
-    private static Pane infoPane,inventoryPane, buildPane;
+    private static Pane introPane, tutPane, infoPane,inventoryPane, buildPane;
+
+    private static boolean tutorial = true;
 
     public static World world;
 
     public static Context context;
+
 
 
 
@@ -65,8 +68,30 @@ public class Frame extends Application {
         noBuild = (Button) scene.lookup("#noBuild");
         moneyLabel = (Label) scene.lookup("#moneyLabel");
         dayLabel = (Label) scene.lookup("#dayLabel");
+        introLabel = (Label) scene.lookup("#introLabel");
+        continueButton = (Button) scene.lookup("#continueButton");
+        introPane = (Pane) scene.lookup("#introPane");
+        tutPane = (Pane) scene.lookup("#tutPane");
+        tutLabel = (Label) scene.lookup("#tutLabel");
 
         updateLabel();
+
+        introLabel.setText(
+                "a picturesque country craving progress amid its stunning " +
+                        "\nlandscapes and cultural richness. Experience the role of a visionary " +
+                        "\nleader tasked with rejuvenating Zamoridia's worn roads. Strategize, " +
+                        "\nallocate resources, and navigate challenges to weave a network that " +
+                        "\nconnects communities, unlocking the nation's potential and fostering " +
+                        "\nprosperity across its enchanting yet neglected terrains.");
+
+        continueButton.setOnMouseClicked(e -> {
+            introPane.setVisible(false);
+            tutPane.setVisible(true);
+            tutLabel.setText(
+                    "To begin building roads for the people of " +
+                            "\nZamoridia, you need to collect some tools. " +
+                            "\nStart by going to the capital city, Aurelia.");
+        });
 
         nextTurnButton.setOnMouseClicked(e->{
             context.NextTurn();
@@ -80,7 +105,7 @@ public class Frame extends Application {
         buildButton.setOnMouseClicked(e -> {
             if (gameCanvas.build){
                 gameCanvas.build = false;
-                buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
+                buildButton.setStyle("-fx-font-weight: bold");
                 gameCanvas.redraw();
             }
             else {
@@ -120,6 +145,7 @@ public class Frame extends Application {
                     if (ccas == gameCanvas.selectedBuildCity) {
                         buildPane.setVisible(true);
                         buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
+
                         return;
                     }
                 }
@@ -138,7 +164,7 @@ public class Frame extends Application {
                     gameCanvas.highlightedCities = new ArrayList<>();
                     infoButton.setVisible(true);
                     buildButton.setVisible(true);
-                    buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
+                    buildButton.setStyle("-fx-font-weight: bold");
 
                     infoButton.setOnMouseClicked(f -> {
                         if (gameCanvas.build){
