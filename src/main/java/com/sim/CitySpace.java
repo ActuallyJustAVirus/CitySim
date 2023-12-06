@@ -1,4 +1,5 @@
 package com.sim;
+
 import java.util.*;
 
 public class CitySpace extends Space {
@@ -7,8 +8,8 @@ public class CitySpace extends Space {
     private List<Road> roads = new ArrayList<>();
     private HashMap<String, Integer> hasAccess = new HashMap<>();
 
-
-    CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation, boolean hasSchool, boolean hasWorkplace, int population) {
+    CitySpace(String name, int x, int y, boolean hasHospital, boolean hasPoliceStation, boolean hasFireStation,
+            boolean hasSchool, boolean hasWorkplace, int population) {
         super(name);
         this.x = x;
         this.y = y;
@@ -40,19 +41,19 @@ public class CitySpace extends Space {
         }
     }
 
-    public int getX(){
+    public int getX() {
         return this.x;
     }
 
-    public int getY(){
+    public int getY() {
         return this.y;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getInfo(){
+    public String getInfo() {
         String info = "";
         info += "Name: " + name + "\n";
         info += "Population: " + population + "\n";
@@ -80,18 +81,18 @@ public class CitySpace extends Space {
         return info;
     }
 
-    public int getPoints(){
+    public int getPoints() {
         int points = 0;
         for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
             if (entry.getValue() > 0) {
-                int pointsToAdd = (population/1000) * entry.getValue(); // TODO: Make this better
-                points += pointsToAdd; 
+                int pointsToAdd = (population / 1000) * entry.getValue(); // TODO: Make this better
+                points += pointsToAdd;
             }
         }
         return points;
     }
 
-    public void updateAccess(String type, int amount){
+    public void updateAccess(String type, int amount) {
         if (hasAccess.containsKey(type) && hasAccess.get(type) < amount) {
             hasAccess.put(type, amount);
         }
@@ -118,7 +119,7 @@ public class CitySpace extends Space {
     @Override
     public void welcome() {
         System.out.println("You are in " + name);
-        
+
     }
 
     private CitySpace roadConnectsTo(Road road) {
@@ -136,5 +137,15 @@ public class CitySpace extends Space {
             }
         }
         return false;
+    }
+
+    public boolean hasAccessToallinsisutions() {
+        for (Map.Entry<String, Integer> entry : hasAccess.entrySet()) {
+            if (entry.getValue() == 0) {
+                return false;
+            }
+        }
+        return true;
+
     }
 }

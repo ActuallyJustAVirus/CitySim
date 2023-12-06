@@ -26,22 +26,20 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
-    
+
     private static Scene scene;
     private static Canvas canvas;
     private static AnchorPane overlay;
 
     private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, okBuild;
 
-    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel, buildPrice, brokeText;
+    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel, buildPrice, brokeText, Win, Lose;
 
-    private static Pane infoPane,inventoryPane, buildPane, itemPane;
+    private static Pane infoPane, inventoryPane, buildPane, itemPane;
 
     public static World world;
 
     public static Context context;
-
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -77,7 +75,27 @@ public class Frame extends Application {
 
         updateLabel();
 
-        nextTurnButton.setOnMouseClicked(e->{
+        nextTurnButton.setOnMouseClicked(e -> {
+
+            Win = (Label) scene.lookup("#Win");
+            ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
+            ArrayList<CitySpace> CitySpace = world.spaces;
+            for (int i = 0; i < CitySpace.size(); i++) {
+                CitySpace city = CitySpace.get(i);
+                if (!city.hasAccessToallinsisutions()) {
+                    break;
+                }
+                if(i==CitySpace.size()-1){
+                    Win.setVisible(true);
+                }
+            }
+
+            Lose = (Label) scene.lookup("#Lose");
+            if (context.tid > context.max) {
+                Lose.setVisible(true);
+
+            }
+
             context.NextTurn();
             updateLabel();
         });
@@ -87,12 +105,11 @@ public class Frame extends Application {
         });
 
         buildButton.setOnMouseClicked(e -> {
-            if (gameCanvas.build){
+            if (gameCanvas.build) {
                 gameCanvas.build = false;
                 buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
                 gameCanvas.redraw();
-            }
-            else {
+            } else {
                 gameCanvas.checkBuildClicked();
                 buildButton.setStyle("-fx-background-color: yellow; -fx-font-weight: bold");
             }
@@ -128,7 +145,7 @@ public class Frame extends Application {
         });
 
         overlay.setOnMouseClicked(e -> {
-            if (gameCanvas.build){
+            if (gameCanvas.build) {
                 gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
                 for (CitySpace ccas : gameCanvas.highlightedCities) {
                     if (ccas == gameCanvas.selectedBuildCity) {
@@ -148,14 +165,15 @@ public class Frame extends Application {
                         }
                     }
                 }
-                if (gameCanvas.selectedCity != null && gameCanvas.selectedBuildCity == gameCanvas.selectedCity) return;
+                if (gameCanvas.selectedCity != null && gameCanvas.selectedBuildCity == gameCanvas.selectedCity)
+                    return;
                 gameCanvas.build = false;
                 buildButton.setVisible(false);
                 infoButton.setVisible(false);
                 buildPane.setVisible(false);
             } else {
-                gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
-                context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
+                gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(), e.getY());
+                context.transition("map"); // TODO: Fix "You are confused, and walk in a circle looking for 'map'."
 
                 if (gameCanvas.selectedCity != null) {
                     context.transition(gameCanvas.selectedCity.getName());
@@ -166,12 +184,12 @@ public class Frame extends Application {
                     buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
 
                     infoButton.setOnMouseClicked(f -> {
-                        if (gameCanvas.build){
+                        if (gameCanvas.build) {
                             gameCanvas.build = false;
                             gameCanvas.redraw();
                         }
                         infoPane.setVisible(true);
-                            infoText.setText(gameCanvas.selectedCity.getInfo());
+                        infoText.setText(gameCanvas.selectedCity.getInfo());
                     });
 
                     String items = gameCanvas.selectedCity.getItems();
@@ -200,7 +218,7 @@ public class Frame extends Application {
                     infoButton.setVisible(false);
                     buildButton.setVisible(false);
                 }
-                if (gameCanvas.build){
+                if (gameCanvas.build) {
                     gameCanvas.build = false;
                 }
             }
@@ -209,13 +227,12 @@ public class Frame extends Application {
 
     }
 
-
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Frame.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
-    private void updateLabel(){
+    private void updateLabel() {
         moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
 
         dayLabel.setText(context.getGameTime());
