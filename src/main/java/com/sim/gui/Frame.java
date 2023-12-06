@@ -2,6 +2,7 @@ package com.sim.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.sim.CitySpace;
 import com.sim.Context;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
@@ -26,7 +28,7 @@ public class Frame extends Application {
 
     private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
 
-    private static Label infoText, inventoryLabel, buildText, Win,Lose;
+    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel, Win,Lose;;
 
     private static Pane infoPane,inventoryPane, buildPane;
 
@@ -39,7 +41,7 @@ public class Frame extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        scene = new Scene(loadFXML("test"), 640, 480);
+        scene = new Scene(loadFXML("test"), 800, 500);
         stage.setScene(scene);
         stage.show();
         canvas = (Canvas) scene.lookup("#canvas");
@@ -61,6 +63,10 @@ public class Frame extends Application {
         buildText = (Label) scene.lookup("#buildText");
         yesBuild = (Button) scene.lookup("#yesBuild");
         noBuild = (Button) scene.lookup("#noBuild");
+        moneyLabel = (Label) scene.lookup("#moneyLabel");
+        dayLabel = (Label) scene.lookup("#dayLabel");
+
+        updateLabel();
 
         nextTurnButton.setOnMouseClicked(e->{
             Win=(Label)scene.lookup("#Win");
@@ -70,10 +76,10 @@ public class Frame extends Application {
                 
             }
               Lose=(Label)scene.lookup("#Lose");
-              if(context.tid>context.max){
-                Lose.setVisible(true); 
+            //   if(context.tid>context.max){
+            //     Lose.setVisible(true); 
 
-              }
+            //   }
                    
 
 
@@ -81,14 +87,23 @@ public class Frame extends Application {
 
 
             context.NextTurn();
-
+            updateLabel();
         });
+
         closeInfo.setOnMouseClicked(e -> {
             infoPane.setVisible(false);
         });
 
         buildButton.setOnMouseClicked(e -> {
-            gameCanvas.checkBuildClicked();
+            if (gameCanvas.build){
+                gameCanvas.build = false;
+                buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
+                gameCanvas.redraw();
+            }
+            else {
+                gameCanvas.checkBuildClicked();
+                buildButton.setStyle("-fx-background-color: yellow; -fx-font-weight: bold");
+            }
         });
 
         inventoryButton.setOnMouseClicked(e -> {
@@ -112,7 +127,6 @@ public class Frame extends Application {
 
         noBuild.setOnMouseClicked(e -> {
             buildPane.setVisible(false);
-            gameCanvas.build = false;
             gameCanvas.redraw();
         });
 
@@ -141,10 +155,15 @@ public class Frame extends Application {
                     gameCanvas.highlightedCities = new ArrayList<>();
                     infoButton.setVisible(true);
                     buildButton.setVisible(true);
+                    buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
 
                     infoButton.setOnMouseClicked(f -> {
+                        if (gameCanvas.build){
+                            gameCanvas.build = false;
+                            gameCanvas.redraw();
+                        }
                         infoPane.setVisible(true);
-                        infoText.setText(gameCanvas.selectedCity.getInfo());
+                            infoText.setText(gameCanvas.selectedCity.getInfo());
                     });
                 } else {
                     infoButton.setVisible(false);
@@ -165,6 +184,11 @@ public class Frame extends Application {
         return fxmlLoader.load();
     }
 
+    private void updateLabel(){
+        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+
+        dayLabel.setText(context.getGameTime());
+    }
 
     public static void main(String[] args) {
         world = new World();
