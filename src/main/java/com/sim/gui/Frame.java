@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
@@ -79,10 +80,12 @@ public class Frame extends Application {
         buildButton.setOnMouseClicked(e -> {
             if (gameCanvas.build){
                 gameCanvas.build = false;
+                buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
                 gameCanvas.redraw();
             }
             else {
                 gameCanvas.checkBuildClicked();
+                buildButton.setStyle("-fx-background-color: yellow; -fx-font-weight: bold");
             }
         });
 
@@ -135,10 +138,15 @@ public class Frame extends Application {
                     gameCanvas.highlightedCities = new ArrayList<>();
                     infoButton.setVisible(true);
                     buildButton.setVisible(true);
+                    buildButton.setStyle("-fx-background-color: white; -fx-font-weight: bold");
 
                     infoButton.setOnMouseClicked(f -> {
+                        if (gameCanvas.build){
+                            gameCanvas.build = false;
+                            gameCanvas.redraw();
+                        }
                         infoPane.setVisible(true);
-                        infoText.setText(gameCanvas.selectedCity.getInfo());
+                            infoText.setText(gameCanvas.selectedCity.getInfo());
                     });
                 } else {
                     infoButton.setVisible(false);

@@ -66,17 +66,17 @@ public class GameCanvas {
         gc.drawImage(mountain,460,270,100,100);
         gc.drawImage(mountain,400,280,100,100);
 
-        for (Road road : world.roads) { //TODO: Draw roads: Work in progress
+        for (Road road : world.roads) {
             CitySpace from = road.connectsTo[0];
             CitySpace to = road.connectsTo[1];
 
-            gc.setLineWidth(50);
+            gc.setLineWidth(30);
             gc.setStroke(Color.BLACK);
 
             gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
 
-            gc.setLineWidth(5);
-            gc.setLineDashes(25);
+            gc.setLineWidth(3);
+            gc.setLineDashes(30);
             gc.setStroke(Color.WHITE);
 
             gc.strokeLine(from.getX() * 5 + 60, from.getY() * 20 + 70, to.getX() * 5 + 60, to.getY() * 20 + 70);
