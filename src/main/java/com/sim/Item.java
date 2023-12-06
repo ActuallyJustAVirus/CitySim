@@ -1,16 +1,16 @@
 package com.sim;
 
+import java.io.File;
+
 public class Item {
     String description;
     String name;
-    boolean portable;
-    boolean listable;
+    public File image;
 
-    public Item(String name, String desc, boolean listable, boolean portable){
+    public Item(String name, String desc, File image){
         this.name = name;
         this.description = desc;
-        this.listable = listable;
-        this.portable = portable;
+        this.image = image;
     }
 
     public String getName(){
@@ -26,9 +26,5 @@ public class Item {
     }
     public void inspect(){
         System.out.println(("You examine the "+this.getName()+". "+this.getDesc()));
-    }
-
-    public boolean isPortable() {
-        return portable;
     }
 }

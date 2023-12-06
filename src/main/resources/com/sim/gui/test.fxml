@@ -24,25 +24,13 @@
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X"/>
                      </children>
                   </Pane>
-                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefWidth="400" prefHeight="200" style="-fx-background-color: white" visible="true">
+                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefWidth="300" prefHeight="200" style="-fx-background-color: white" visible="false">
                      <children>
-                        <ImageView
-                                 fx:id="imageView"
-                                 fitHeight="150.0"
-                                 fitWidth="200.0"
-                                 layoutX="61.0"
-                                 layoutY="83.0"
-                                 pickOnBounds="true"
-                                 preserveRatio="true"
-                              >
-                              <image>
-                                 <Image
-                                    url="src/Box13.jpg"
-                                    backgroundLoading="true"
-                                    />
-                              </image>
+                        <Label fx:id="itemName" layoutX="100" layoutY="20" text="Information about item"/>
+                        <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="200.0" layoutX="90.0" layoutY="35" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Button fx:id="collectItemBtn" layoutX="365" layoutY="10" text="Collect Item"/>
+                        <Label fx:id="itemDescription" layoutX="100" layoutY="150" text="Description"/>
+                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="170" text="Collect Item"/>
                      </children>
                   </Pane>
                   <Pane fx:id="buildPane" layoutX="200" layoutY="150" prefWidth="225" prefHeight="100" style="-fx-background-color: white" visible="false">
