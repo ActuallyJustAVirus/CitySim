@@ -14,6 +14,8 @@
             <Canvas fx:id="canvas" height="420.0" width="800.0" />
             <AnchorPane fx:id="overlay">
                <children>
+                  <Label fx:id="Win" layoutX="150" layoutY="100" text="you win" style="-fx-font-family: 'Arial'; -fx-font-size: 30; -fx-background-color: lightgray; -fx-padding: 75;" visible="false" />
+                  <Label fx:id="Lose" layoutX="150" layoutY="100" text="you lose"  style="-fx-font-family: 'Arial'; -fx-font-size: 30; -fx-background-color: lightgray; -fx-padding: 75;" visible="false" />
                   <Pane fx:id="infoPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
                         <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city" />

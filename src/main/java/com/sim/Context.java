@@ -6,8 +6,9 @@ import java.text.DecimalFormat;
 import java.io.File;
 
 public class Context {
-    int tid = 0;
-    int max = 72;   //12 months * 6 years = 72 max rounds.
+    public int tid = 0;
+    public int max = 72;   //12 months * 6 years = 72 max rounds.
+    public int antalveje = 10;
     int points = 0;
     Space currentSpace;
     public World world;
@@ -75,11 +76,11 @@ public class Context {
         }
 
 
-        int antalveje = 10;
-        if (antalveje == world.roads.size()) {
-            System.out.println("you win");
+        
+        // if (antalveje == world.roads.size()) {
+        //     System.out.println("you win");
 
-        }
+        // }
     }
     public void GetBalance() {
         System.out.println("Your balance is " + balance);
@@ -97,7 +98,9 @@ public class Context {
 
         DecimalFormat Rounded = new DecimalFormat("#.##");
         // Convert the formatted price string to a double using Double.parseDouble()
-        return Double.parseDouble(Rounded.format(Price));
+        String formattedPrice = Rounded.format(Price);
+        formattedPrice = formattedPrice.replace(",", ".");
+        return Double.parseDouble(formattedPrice);
     }
 
 
