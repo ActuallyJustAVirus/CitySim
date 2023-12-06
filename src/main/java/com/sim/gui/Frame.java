@@ -6,8 +6,11 @@ import java.util.Arrays;
 
 import com.sim.CitySpace;
 import com.sim.Context;
+import com.sim.Item;
 import com.sim.World;
 import com.sim.commands.CommandInventory;
+import com.sim.commands.CommandTake;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -30,7 +35,7 @@ public class Frame extends Application {
 
     private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel;
 
-    private static Pane introPane, tutPane, infoPane,inventoryPane, buildPane;
+    private static Pane infoPane,inventoryPane, buildPane;
 
     public static World world;
 
@@ -62,6 +67,7 @@ public class Frame extends Application {
         inventoryLabel = (Label) scene.lookup("#inventoryText");
         nextTurnButton = (Button) scene.lookup("#nextturn");
         buildPane = (Pane) scene.lookup("#buildPane");
+        itemPane = (Pane) scene.lookup("#itemPane");
         buildText = (Label) scene.lookup("#buildText");
         yesBuild = (Button) scene.lookup("#yesBuild");
         noBuild = (Button) scene.lookup("#noBuild");
@@ -144,7 +150,6 @@ public class Frame extends Application {
                     if (ccas == gameCanvas.selectedBuildCity) {
                         buildPane.setVisible(true);
                         buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
-
                         return;
                     }
                 }
@@ -154,6 +159,7 @@ public class Frame extends Application {
                 infoButton.setVisible(false);
                 buildPane.setVisible(false);
             } else {
+                gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
                 context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
                 citySelect(gameCanvas.checkClick(e.getX(),e.getY()));
 
@@ -186,23 +192,60 @@ public class Frame extends Application {
                 buildButton.setVisible(true);
                 buildButton.setStyle("-fx-font-weight: bold");
 
-                infoButton.setOnMouseClicked(f -> {
-                    if (gameCanvas.build){
-                        gameCanvas.build = false;
-                        gameCanvas.redraw();
-                    }
-                    infoPane.setVisible(true);
-                    infoText.setText(gameCanvas.selectedCity.getInfo());
-                });
-            }
+                    infoButton.setOnMouseClicked(f -> {
+                        if (gameCanvas.build){
+                            gameCanvas.build = false;
+                            gameCanvas.redraw();
+                        }
+                        infoPane.setVisible(true);
+                            infoText.setText(gameCanvas.selectedCity.getInfo());
+                    });
 
-        } else {
-            infoButton.setVisible(false);
-            buildButton.setVisible(false);
-        }
-        if (gameCanvas.build){
-            gameCanvas.build = false;
-        }
+                    String items = gameCanvas.selectedCity.getItems();
+                    if (!items.equals("")) {
+                        itemPane.setVisible(true);
+                        ImageView imageView = (ImageView)itemPane.lookup("#imageView");
+                        Label itemNameLabel = (Label)itemPane.lookup("#itemName");
+                        Label itemDescriptionLabel = (Label)itemPane.lookup("#itemDescription");
+                        Button takeButton = (Button)itemPane.lookup("#collectItemBtn");
+
+                        String itemname = items.split("\n")[0];
+                        Item item = gameCanvas.selectedCity.getItem(itemname);
+                        itemNameLabel.setText("You found a "+itemname);
+                        itemDescriptionLabel.setText(item.getDesc());
+                        Image image = new Image(item.image.toURI().toString());
+                        imageView.setImage(image);
+
+                        takeButton.setOnMouseClicked(g -> {
+                            CommandTake take = new CommandTake();
+                            take.execute(context, "take", new String[]{itemname});
+                            itemPane.setVisible(false);
+                        });
+                    }
+
+                } else {
+                    infoButton.setVisible(false);
+                    buildButton.setVisible(false);
+                }
+                if (gameCanvas.build){
+                    gameCanvas.build = false;
+                }
+            }
+        });
+        gameCanvas.redraw();
+
+    }
+
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Frame.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    private void updateLabel(){
+        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+
+        dayLabel.setText(context.getGameTime());
     }
 
     public static void main(String[] args) {

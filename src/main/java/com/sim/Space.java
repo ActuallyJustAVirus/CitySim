@@ -36,6 +36,15 @@ public class Space extends Node {
         }
         return null;
     }
+
+    public String getItems() {
+        String items = "";
+        for (Item item : worldItems) {
+            items += item.getName() + "\n";
+        }
+        return items;
+    }
+    
     public void goodbye() {
     }
 

@@ -11,11 +11,11 @@ public class CommandTake extends BaseCommand {
     }
     @Override
     public void execute(Context context, String command, String[] parameters) {
-        if (parameters.length < 2) {
+        if (parameters.length < 1) {
             System.out.println("Please provide the name of the item you want to take.");
             return;
         }
-        String itemName = parameters[1];
+        String itemName = parameters[0];
         Item itemToTake = context.getCurrentSpace().getItem(itemName);
 
         if (itemToTake == null) {

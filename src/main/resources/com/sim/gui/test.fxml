@@ -4,6 +4,8 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
 
 <?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
@@ -32,6 +34,15 @@
                      <children>
                         <Label fx:id="infoText" layoutX="100" layoutY="20" text="Information about city" />
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefWidth="300" prefHeight="200" style="-fx-background-color: white" visible="false">
+                     <children>
+                        <Label fx:id="itemName" layoutX="100" layoutY="20" text="Information about item"/>
+                        <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="200.0" layoutX="90.0" layoutY="35" pickOnBounds="true" preserveRatio="true">
+                        </ImageView>
+                        <Label fx:id="itemDescription" layoutX="100" layoutY="150" text="Description"/>
+                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="170" text="Collect Item"/>
                      </children>
                   </Pane>
                   <Pane fx:id="buildPane" layoutX="275" layoutY="150" prefHeight="100" prefWidth="250" style="-fx-background-color: white" visible="false">

@@ -2,6 +2,8 @@ package com.sim;
 /* Context class to hold all context relevant to a session.
  */
 
+import java.io.File;
+
 public class Context {
     int tid = 0;
     int max = 72;   //12 months * 6 years = 72 max rounds.
@@ -19,12 +21,8 @@ public class Context {
         currentSpace = world.getEntry();
 
         // Below is an item list.
-        Item item1 = new Item("Test","This is a Test Item",true,true);
-        Item item2 = new Item("Test2","This is a Test Item",true,true);
-        Item item3 = new Item("Test2","This is a Test Item",true,true);
+        Item item1 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Item.png"));
         inv.addItem(item1); // This is only test items. Right now they will be added as soon as the games starts.
-        inv.addItem(item2);
-        inv.addItem(item3);
     }
 
     public Space getCurrentSpace() {
@@ -104,6 +102,3 @@ public class Context {
 
 
 }
-
-
-

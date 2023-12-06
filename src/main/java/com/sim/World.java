@@ -2,6 +2,7 @@ package com.sim;
 /* World class for modeling the entire in-game world
  */
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class World {
@@ -22,6 +23,13 @@ public class World {
 
 
         //TODO: Figure out what cities has access to what institutions.
+
+        Item item1 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Lake.png"));
+        spaces.get(0).addItem(item1);
+        Item item2 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/City.jpg"));
+        spaces.get(1).addItem(item2);
+        Item item3 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Mountain.png"));
+        spaces.get(2).addItem(item3);
 
         for (int i = 1; i < 8; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
