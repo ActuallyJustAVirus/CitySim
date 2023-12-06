@@ -97,7 +97,9 @@ public class Context {
 
         DecimalFormat Rounded = new DecimalFormat("0.00");
         // Convert the formatted price string to a double using Double.parseDouble()
-        return Double.parseDouble(Rounded.format(Price));
+        String formattedPrice = Rounded.format(Price);
+        formattedPrice = formattedPrice.replace(",", ".");
+        return Double.parseDouble(formattedPrice);
     }
 
 
