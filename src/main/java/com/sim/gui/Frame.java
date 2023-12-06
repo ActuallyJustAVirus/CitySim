@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.sim.CitySpace;
-import com.sim.Context;
-import com.sim.Item;
-import com.sim.World;
+import com.sim.*;
 import com.sim.commands.CommandInventory;
 import com.sim.commands.CommandTake;
 
@@ -43,6 +40,10 @@ public class Frame extends Application {
 
     GameCanvas gameCanvas;
 
+    Tutorial tutorial;
+
+    Level currentLevel;
+
 
 
     @Override
@@ -55,6 +56,9 @@ public class Frame extends Application {
         context = new Context(world);
         gameCanvas = new GameCanvas(canvas, world, context);
         overlay = (AnchorPane) scene.lookup("#overlay");
+
+        tutorial = new Tutorial();
+        currentLevel = new Level(tutorial.levels.get(0).getLevelNumber(),tutorial.levels.get(0).getDescription());
 
         infoButton = (Button) scene.lookup("#infoButton");
         buildButton = (Button) scene.lookup("#buildButton");
@@ -92,10 +96,7 @@ public class Frame extends Application {
         continueButton.setOnMouseClicked(e -> {
             introPane.setVisible(false);
             tutPane.setVisible(true);
-            tutLabel.setText(
-                    "To begin building roads for the people of " +
-                            "\nZamoridia, you need to collect some tools. " +
-                            "\nStart by going to the capital city, Aurelia.");
+            tutLabel.setText(currentLevel.getDescription());
         });
 
         nextTurnButton.setOnMouseClicked(e->{
@@ -171,33 +172,12 @@ public class Frame extends Application {
             } else {
                 gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
                 context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
-                citySelect(gameCanvas.checkClick(e.getX(),e.getY()));
-                String items = gameCanvas.selectedCity.getItems();
-                if (!items.equals("")) {
-                    itemPane.setVisible(true);
-                    ImageView imageView = (ImageView) itemPane.lookup("#imageView");
-                    Label itemNameLabel = (Label) itemPane.lookup("#itemName");
-                    Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
-                    Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
-
-                    String itemname = items.split("\n")[0];
-                    Item item = gameCanvas.selectedCity.getItem(itemname);
-                    itemNameLabel.setText("You found a " + itemname);
-                    itemDescriptionLabel.setText(item.getDesc());
-                    Image image = new Image(item.image.toURI().toString());
-                    imageView.setImage(image);
-
-                    takeButton.setOnMouseClicked(g -> {
-                        CommandTake take = new CommandTake();
-                        take.execute(context, "take", new String[]{itemname});
-                        itemPane.setVisible(false);
-                    });
+                if (gameCanvas.checkClick(e.getX(),e.getY()) != null){
+                    citySelect(gameCanvas.checkClick(e.getX(),e.getY()));
                 }
-
             }
         });
         gameCanvas.redraw();
-
     }
 
     void citySelect(CitySpace city){
@@ -206,27 +186,53 @@ public class Frame extends Application {
             context.transition(gameCanvas.selectedCity.getName());
             gameCanvas.build = false;
             gameCanvas.highlightedCities = new ArrayList<>();
-            if (context.hasTools("Steamroller")) {
 
+            if (context.hasTools("Steamroller")) {
                 buildButton.setVisible(true);
                 buildButton.setStyle("-fx-font-weight: bold");
-
-            } else if (context.hasTools("Filing cabinet")){
-                infoButton.setVisible(true);
+            } else {
+                buildButton.setVisible(false);
             }
 
-            else {
+            if (context.hasTools("Filing cabinet")){
+                infoButton.setVisible(true);
+            } else {
                 infoButton.setVisible(false);
-                buildButton.setVisible(false);
             }
 
             if (gameCanvas.build) {
                 gameCanvas.build = false;
             }
+            String items = gameCanvas.selectedCity.getItems();
+            if (!items.equals("")) {
+                itemPane.setVisible(true);
+                ImageView imageView = (ImageView) itemPane.lookup("#imageView");
+                Label itemNameLabel = (Label) itemPane.lookup("#itemName");
+                Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
+                Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
+
+                String itemname = items.split("\n")[0];
+                Item item = gameCanvas.selectedCity.getItem(itemname);
+                itemNameLabel.setText("You found a " + itemname);
+                itemDescriptionLabel.setText(item.getDesc());
+                Image image = new Image(item.image.toURI().toString());
+                imageView.setImage(image);
+
+                takeButton.setOnMouseClicked(g -> {
+                    CommandTake take = new CommandTake();
+                    take.execute(context, "take", new String[]{itemname});
+                    itemPane.setVisible(false);
+                });
+            }
 
         };
         gameCanvas.redraw();
 
+    }
+
+    void nextTutorial(){
+        currentLevel = tutorial.levels.get(currentLevel.getLevelNumber()+1);
+        tutLabel.setText(currentLevel.getDescription());
     }
 
 

@@ -11,9 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import com.sim.Road;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+
 
 import java.util.ArrayList;
 
@@ -141,14 +139,7 @@ public class GameCanvas {
     public CitySpace checkClick(double x, double y) {
         if (build){
             for (CitySpace city : world.spaces) {
-                if (city.getName() == "Aurelia") {
-                    if (x >= city.getX() * 5+20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
-                        selectedBuildCity = city;
-                        redraw();
-                        return selectedBuildCity;
-                    }
-                }
-                if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
+                if (x >= city.getX() * 5 + 20 && x <= city.getX() * 5 + 100 && y >= city.getY() * 20+35 && y <= city.getY()*20+110) {
                     selectedBuildCity = city;
                     redraw();
                     return selectedBuildCity;
@@ -156,14 +147,7 @@ public class GameCanvas {
             }
         } else{
             for (CitySpace city : world.spaces) {
-                if (city.getName() == "Aurelia") {
-                    if (x >= city.getX() * 5+10 && x <= city.getX() * 5 + 120 && y >= city.getY() * 20+15 && y <= city.getY() * 20 + 100) {
-                        selectedCity = city;
-                        redraw();
-                        return selectedCity;
-                    }
-                }
-                if (x >= city.getX() * 5+10 && x <= city.getX() * 5 + 120 && y >= city.getY() * 20+20 && y <= city.getY()*20+100) {
+                if (x >= city.getX() * 5+10 && x <= city.getX() * 5 + 120 && y >= city.getY() * 20+35 && y <= city.getY()*20+110) {
                     selectedCity = city;
                     redraw();
                     return selectedCity;
@@ -179,7 +163,9 @@ public class GameCanvas {
     }
 
 
+    void nextTutorial(){
 
+    }
 
     void build (){
         builder = new CommandBuild();

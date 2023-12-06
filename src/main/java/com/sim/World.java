@@ -27,9 +27,10 @@ public class World {
         Item item1 = new Item("Filing cabinet","Get access to information about the cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
         spaces.get(0).addItem(item1);
         Item item2 = new Item("Steamroller","Use the steamroller to pave new roads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
-        spaces.get(1).addItem(item2);
-        Item item3 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Mountain.png"));
-        spaces.get(2).addItem(item3);
+
+        if (spaces.get(0).getItem("Filing cabinet") == null){
+            spaces.get(12).addItem(item2);
+        }
 
         for (int i = 1; i < 8; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
