@@ -178,6 +178,9 @@ public class GameCanvas {
         return null;
     }
 
+
+
+
     void build (){
         builder = new CommandBuild();
         builder.execute(context, "build", new String[]{selectedBuildCity.getName()});

@@ -96,6 +96,10 @@ public class Context {
         return 50; // TODO
     }
 
+    public boolean hasTools(String tool){
+        return true;
+    }
+
 
 
 

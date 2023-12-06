@@ -32,12 +32,11 @@ public class Frame extends Application {
 
     private static Pane introPane, tutPane, infoPane,inventoryPane, buildPane;
 
-    private static boolean tutorial = true;
-
     public static World world;
 
     public static Context context;
 
+    GameCanvas gameCanvas;
 
 
 
@@ -49,7 +48,7 @@ public class Frame extends Application {
         stage.show();
         canvas = (Canvas) scene.lookup("#canvas");
         context = new Context(world);
-        GameCanvas gameCanvas = new GameCanvas(canvas, world, context);
+        gameCanvas = new GameCanvas(canvas, world, context);
         overlay = (AnchorPane) scene.lookup("#overlay");
 
         infoButton = (Button) scene.lookup("#infoButton");
@@ -155,32 +154,9 @@ public class Frame extends Application {
                 infoButton.setVisible(false);
                 buildPane.setVisible(false);
             } else {
-                gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
                 context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
+                citySelect(gameCanvas.checkClick(e.getX(),e.getY()));
 
-                if (gameCanvas.selectedCity != null) {
-                    context.transition(gameCanvas.selectedCity.getName());
-                    gameCanvas.build = false;
-                    gameCanvas.highlightedCities = new ArrayList<>();
-                    infoButton.setVisible(true);
-                    buildButton.setVisible(true);
-                    buildButton.setStyle("-fx-font-weight: bold");
-
-                    infoButton.setOnMouseClicked(f -> {
-                        if (gameCanvas.build){
-                            gameCanvas.build = false;
-                            gameCanvas.redraw();
-                        }
-                        infoPane.setVisible(true);
-                            infoText.setText(gameCanvas.selectedCity.getInfo());
-                    });
-                } else {
-                    infoButton.setVisible(false);
-                    buildButton.setVisible(false);
-                }
-                if (gameCanvas.build){
-                    gameCanvas.build = false;
-                }
             }
         });
         gameCanvas.redraw();
@@ -197,6 +173,36 @@ public class Frame extends Application {
         moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
 
         dayLabel.setText(context.getGameTime());
+    }
+
+    void citySelect(CitySpace city){
+        gameCanvas.selectedCity = city;
+        if (gameCanvas.selectedCity != null) {
+            context.transition(gameCanvas.selectedCity.getName());
+            gameCanvas.build = false;
+            gameCanvas.highlightedCities = new ArrayList<>();
+            if (context.hasTools("Steamroller")){
+                infoButton.setVisible(true);
+                buildButton.setVisible(true);
+                buildButton.setStyle("-fx-font-weight: bold");
+
+                infoButton.setOnMouseClicked(f -> {
+                    if (gameCanvas.build){
+                        gameCanvas.build = false;
+                        gameCanvas.redraw();
+                    }
+                    infoPane.setVisible(true);
+                    infoText.setText(gameCanvas.selectedCity.getInfo());
+                });
+            }
+
+        } else {
+            infoButton.setVisible(false);
+            buildButton.setVisible(false);
+        }
+        if (gameCanvas.build){
+            gameCanvas.build = false;
+        }
     }
 
     public static void main(String[] args) {
