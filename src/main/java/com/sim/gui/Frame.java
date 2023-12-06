@@ -26,9 +26,9 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, okBuild;
 
-    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel;
+    private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel, buildPrice, brokeText;
 
     private static Pane infoPane,inventoryPane, buildPane;
 
@@ -65,6 +65,9 @@ public class Frame extends Application {
         noBuild = (Button) scene.lookup("#noBuild");
         moneyLabel = (Label) scene.lookup("#moneyLabel");
         dayLabel = (Label) scene.lookup("#dayLabel");
+        buildPrice = (Label) scene.lookup("#buildPrice");
+        brokeText = (Label) scene.lookup("#brokeText");
+        okBuild = (Button) scene.lookup("#okBuild");
 
         updateLabel();
 
@@ -113,14 +116,30 @@ public class Frame extends Application {
             gameCanvas.redraw();
         });
 
+        okBuild.setOnMouseClicked(e -> {
+            buildPane.setVisible(false);
+            gameCanvas.redraw();
+        });
+
         overlay.setOnMouseClicked(e -> {
             if (gameCanvas.build){
                 gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
                 for (CitySpace ccas : gameCanvas.highlightedCities) {
                     if (ccas == gameCanvas.selectedBuildCity) {
-                        buildPane.setVisible(true);
-                        buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
-                        return;
+
+                        if(context.balance < context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity)){
+                            buildPane.setVisible(true);
+                            brokeText.setVisible(true);
+                            yesBuild.setVisible(false);
+                            noBuild.setVisible(false);
+                            okBuild.setVisible(true);
+                            return;
+                        } else {
+                            buildPane.setVisible(true);
+                            buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
+                            buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
+                            return;
+                        }
                     }
                 }
                 if (gameCanvas.selectedCity != null && gameCanvas.selectedBuildCity == gameCanvas.selectedCity) return;

@@ -2,6 +2,8 @@ package com.sim;
 /* Context class to hold all context relevant to a session.
  */
 
+import java.text.DecimalFormat;
+
 public class Context {
     int tid = 0;
     int max = 72;   //12 months * 6 years = 72 max rounds.
@@ -9,7 +11,7 @@ public class Context {
     Space currentSpace;
     public World world;
     boolean done = false;
-    public int balance = 100;
+    public double balance = 100;
     public Inventory inv = new Inventory();
     public String[] gameMonth = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     public int gameYear = 2024;
@@ -92,10 +94,14 @@ public class Context {
 
     }
 
-    public int getPrice(CitySpace city1, CitySpace city2) {
-        return 50; // TODO
-    }
+    public double getPrice(CitySpace city1, CitySpace city2) {
+        double cityDistances = Math.sqrt(Math.pow(city2.getX() - city1.getX(),2) + Math.pow(city2.getY() - city1.getY(),2));
+        double Price = cityDistances * 2.3;
 
+        DecimalFormat Rounded = new DecimalFormat("0.00");
+        // Convert the formatted price string to a double using Double.parseDouble()
+        return Double.parseDouble(Rounded.format(Price));
+    }
 
 
 

@@ -21,10 +21,12 @@
                   </Pane>
                   <Pane fx:id="buildPane" layoutX="275" layoutY="150" prefHeight="100" prefWidth="250" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="buildText" layoutX="20" layoutY="15" prefWidth="250" text="Build city from x to y?" />
-                        <Label fx:id="buildPrice" layoutX="100" layoutY="35" prefWidth="250" text="Price: 50$" textFill="green" />
+                        <Label fx:id="buildText" alignment="CENTER" layoutY="15" prefWidth="250" text="Build city from x to y?" />
+                        <Label fx:id="buildPrice" alignment="CENTER" layoutY="35" prefWidth="250" textFill="green" />
                         <Button fx:id="yesBuild" layoutX="75" layoutY="60" prefWidth="50" text="Yes" />
                         <Button fx:id="noBuild" layoutX="125" layoutY="60" prefWidth="50" text="No" />
+                        <Button fx:id="okBuild" layoutX="100" layoutY="70" prefWidth="50" text="Close" visible="false"/>
+                        <Label fx:id="brokeText" layoutX="75" layoutY="50" prefWidth="150" text="Insufficient Funds!" textFill="red" visible="false" />
                      </children>
 
                   </Pane>

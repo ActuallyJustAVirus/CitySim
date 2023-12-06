@@ -73,9 +73,7 @@ public class CommandBuild extends BaseCommand {
                 }
             }
 
-            int price = context.getPrice(city2,city);
-
-            if (context.balance < price){
+            if (context.balance < context.getPrice(city2,city)){
                 System.out.println("Insufficient funds 😭");
                 return;
             }
