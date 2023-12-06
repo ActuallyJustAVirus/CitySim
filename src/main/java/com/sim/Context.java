@@ -95,7 +95,7 @@ public class Context {
         double cityDistances = Math.sqrt(Math.pow(city2.getX() - city1.getX(),2) + Math.pow(city2.getY() - city1.getY(),2));
         double Price = cityDistances * 2.3;
 
-        DecimalFormat Rounded = new DecimalFormat("0.00");
+        DecimalFormat Rounded = new DecimalFormat("#.##");
         // Convert the formatted price string to a double using Double.parseDouble()
         return Double.parseDouble(Rounded.format(Price));
     }

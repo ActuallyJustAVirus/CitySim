@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import  javafx.scene.text.*;
 
 public class Frame extends Application {
     
@@ -36,6 +37,8 @@ public class Frame extends Application {
     private static Label infoText, inventoryLabel, buildText, moneyLabel, dayLabel, buildPrice, brokeText;
 
     private static Pane infoPane,inventoryPane, buildPane, itemPane;
+
+    private static Text moneyText;
 
     public static World world;
 
@@ -69,7 +72,7 @@ public class Frame extends Application {
         buildText = (Label) scene.lookup("#buildText");
         yesBuild = (Button) scene.lookup("#yesBuild");
         noBuild = (Button) scene.lookup("#noBuild");
-        moneyLabel = (Label) scene.lookup("#moneyLabel");
+        moneyText = (Text) scene.lookup("#moneyText");
         dayLabel = (Label) scene.lookup("#dayLabel");
         buildPrice = (Label) scene.lookup("#buildPrice");
         brokeText = (Label) scene.lookup("#brokeText");
@@ -216,7 +219,8 @@ public class Frame extends Application {
     }
 
     private void updateLabel(){
-        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+        moneyText.setText(String.valueOf((context.balance)));
+        moneyText.setFill(Color.GREEN);
 
         dayLabel.setText(context.getGameTime());
     }
