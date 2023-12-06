@@ -95,7 +95,12 @@ public class Context {
     }
 
     public boolean hasTools(String tool){
-        return true;
+        if (inv.getItem(tool) != null){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

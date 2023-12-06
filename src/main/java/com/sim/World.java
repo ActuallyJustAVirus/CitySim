@@ -24,9 +24,9 @@ public class World {
 
         //TODO: Figure out what cities has access to what institutions.
 
-        Item item1 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Lake.png"));
+        Item item1 = new Item("Filing cabinet","Get access to information about the cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
         spaces.get(0).addItem(item1);
-        Item item2 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/City.jpg"));
+        Item item2 = new Item("Steamroller","Use the steamroller to pave new roads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
         spaces.get(1).addItem(item2);
         Item item3 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Mountain.png"));
         spaces.get(2).addItem(item3);
