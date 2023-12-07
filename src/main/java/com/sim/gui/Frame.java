@@ -160,7 +160,7 @@ public class Frame extends Application {
                         } else {
                             buildPane.setVisible(true);
                             buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
-                            buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
+                             buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
                             return;
                         }
                     }
@@ -233,7 +233,7 @@ public class Frame extends Application {
     }
 
     private void updateLabel() {
-        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+        moneyLabel.setText("Balance: $" + String.valueOf((context.balance))+" million");
 
         dayLabel.setText(context.getGameTime());
     }
