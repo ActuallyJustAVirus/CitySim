@@ -58,7 +58,7 @@ public class Frame extends Application {
         overlay = (AnchorPane) scene.lookup("#overlay");
 
         tutorial = new Tutorial();
-        currentLevel = new Level(tutorial.levels.get(0).getLevelNumber(),tutorial.levels.get(0).getDescription());
+        currentLevel = new Level(tutorial.levels.get(0));
 
         infoButton = (Button) scene.lookup("#infoButton");
         buildButton = (Button) scene.lookup("#buildButton");
@@ -203,29 +203,10 @@ public class Frame extends Application {
             if (gameCanvas.build) {
                 gameCanvas.build = false;
             }
-            String items = gameCanvas.selectedCity.getItems();
-            if (!items.equals("")) {
-                itemPane.setVisible(true);
-                ImageView imageView = (ImageView) itemPane.lookup("#imageView");
-                Label itemNameLabel = (Label) itemPane.lookup("#itemName");
-                Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
-                Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
-
-                String itemname = items.split("\n")[0];
-                Item item = gameCanvas.selectedCity.getItem(itemname);
-                itemNameLabel.setText("You found a " + itemname);
-                itemDescriptionLabel.setText(item.getDesc());
-                Image image = new Image(item.image.toURI().toString());
-                imageView.setImage(image);
-
-                takeButton.setOnMouseClicked(g -> {
-                    CommandTake take = new CommandTake();
-                    take.execute(context, "take", new String[]{itemname});
-                    itemPane.setVisible(false);
-                });
-            }
+            displayItems(city);
 
         };
+
         gameCanvas.redraw();
 
     }
@@ -233,8 +214,33 @@ public class Frame extends Application {
     void nextTutorial(){
         currentLevel = tutorial.levels.get(currentLevel.getLevelNumber()+1);
         tutLabel.setText(currentLevel.getDescription());
+        currentLevel.getSpace().addItem(currentLevel.getLevelItem());
     }
 
+    void displayItems(CitySpace city){
+        String items = city.getItems();
+        if (!items.equals("")) {
+            itemPane.setVisible(true);
+            ImageView imageView = (ImageView) itemPane.lookup("#imageView");
+            Label itemNameLabel = (Label) itemPane.lookup("#itemName");
+            Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
+            Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
+
+            String itemname = items.split("\n")[0];
+            Item item = city.getItem(itemname);
+            itemNameLabel.setText("You found a " + itemname);
+            itemDescriptionLabel.setText(item.getDesc());
+            Image image = new Image(item.image.toURI().toString());
+            imageView.setImage(image);
+
+            takeButton.setOnMouseClicked(g -> {
+                CommandTake take = new CommandTake();
+                take.execute(context, "take", new String[]{itemname});
+                itemPane.setVisible(false);
+                nextTutorial();
+            });
+        }
+    }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Frame.class.getResource(fxml + ".fxml"));

@@ -10,6 +10,8 @@ public class World {
     public ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
     public ArrayList<Road> roads = new ArrayList<Road>();
 
+    Item item1, item2, item3;
+
     public World() {
         Space map = new MapSpace(this);
         spaces.add(new CitySpace("Aurelia", 50, 7, true, true, true, true, true, 10000));
@@ -24,13 +26,13 @@ public class World {
 
         //TODO: Figure out what cities has access to what institutions.
 
-        Item item1 = new Item("Filing cabinet","Get access to information about the cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
+        item1 = new Item("Filing cabinet","Get access to information about the cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
         spaces.get(0).addItem(item1);
-        Item item2 = new Item("Steamroller","Use the steamroller to pave new roads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
 
-        if (spaces.get(0).getItem("Filing cabinet") == null){
-            spaces.get(12).addItem(item2);
-        }
+        item2 = new Item("Steamroller","Use the steamroller to pave new roads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
+
+        item3 = new Item("Crane","Use the crane to build bridges over bodies of water.", new File("src/main/resources/com/sim/gui/crane.png"));
+
 
         for (int i = 1; i < 8; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());
