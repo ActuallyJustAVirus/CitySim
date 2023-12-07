@@ -203,6 +203,10 @@ public class Frame extends Application {
                             okBuild.setVisible(true);
                             return;
                         } else {
+                            brokeText.setVisible(false);
+                            yesBuild.setVisible(true);
+                            noBuild.setVisible(true);
+                            okBuild.setVisible(false);
                             buildPane.setVisible(true);
                             buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
                              buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
