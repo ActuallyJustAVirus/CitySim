@@ -19,10 +19,6 @@ public class Context {
     public Context(World world) {
         this.world = world;
         currentSpace = world.getEntry();
-
-        // Below is an item list.
-        Item item1 = new Item("Test","This is a Test Item",new File("src/main/resources/com/sim/gui/Item.png"));
-        inv.addItem(item1); // This is only test items. Right now they will be added as soon as the games starts.
     }
 
     public Space getCurrentSpace() {

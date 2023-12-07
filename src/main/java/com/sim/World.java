@@ -26,14 +26,14 @@ public class World {
 
         //TODO: Figure out what cities has access to what institutions.
 
-        item1 = new Item("Filing cabinet","Get access to information about the cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
+        item1 = new Item("Filing cabinet","Get access to information about \nthe cities of Zamoridia",new File("src/main/resources/com/sim/gui/filing.png"));
         spaces.get(0).addItem(item1);
 
-        item2 = new Item("Steamroller","Use the steamroller to pave new roads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
+        item2 = new Item("Steamroller","Use the steamroller to pave new \nroads for the people of Zamoridia",new File("src/main/resources/com/sim/gui/steamroller.png"));
         spaces.get(3).addItem(item2);
 
-        item3 = new Item("Crane","Use the crane to build bridges over bodies of water.", new File("src/main/resources/com/sim/gui/crane.png"));
-        spaces.get(5).addItem(item3);
+        item3 = new Item("Crane","Use the crane to build bridges \nover bodies of water.", new File("src/main/resources/com/sim/gui/crane.png"));
+        spaces.get(7).addItem(item3);
 
         for (int i = 1; i < 8; i++) {
             spaces.get(0).addBothEdges(spaces.get(i).getName(),spaces.get(i),spaces.get(0).getName());

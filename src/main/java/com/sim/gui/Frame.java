@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
@@ -28,11 +29,11 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, continueButton;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, continueButton, itemContinueButton;
 
-    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel;
+    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel, itemCollectedLabel, welcome;
 
-    private static Pane infoPane,inventoryPane, buildPane, itemPane, tutPane, introPane;
+    private static Pane infoPane,inventoryPane, buildPane, itemPane, tutPane, introPane, itemCollectedPane;
 
     public static World world;
 
@@ -82,21 +83,29 @@ public class Frame extends Application {
         introPane = (Pane) scene.lookup("#introPane");
         tutPane = (Pane) scene.lookup("#tutPane");
         tutLabel = (Label) scene.lookup("#tutLabel");
+        itemCollectedPane = (Pane) scene.lookup("#itemCollectedPane");
+        itemContinueButton = (Button) scene.lookup("#itemContinueButton");
+        itemCollectedLabel = (Label) scene.lookup("#itemCollectedLabel");
+        welcome = (Label) scene.lookup("#welcome");
+
 
         updateLabel();
 
         introLabel.setText(
                 "a picturesque country craving progress amid its stunning " +
-                        "\nlandscapes and cultural richness. Experience the role of a visionary " +
-                        "\nleader tasked with rejuvenating Zamoridia's worn roads. Strategize, " +
-                        "\nallocate resources, and navigate challenges to weave a network that " +
-                        "\nconnects communities, unlocking the nation's potential and fostering " +
-                        "\nprosperity across its enchanting yet neglected terrains.");
+                        "\nlandscapes and cultural richness. Experience the role of a " +
+                        "\nvisionary leader tasked with rejuvenating Zamoridia's worn " +
+                        "\nroads. Strategize, allocate resources, and navigate " +
+                        "\nchallenges to weave a network that connects communities, " +
+                        "\nunlocking the nation's potential and fostering prosperity " +
+                        "\nacross its enchanting yet neglected terrains.");
 
         continueButton.setOnMouseClicked(e -> {
             introPane.setVisible(false);
-            tutPane.setVisible(true);
-            tutLabel.setText(currentLevel.getDescription());
+            if (currentLevel.getLevelNumber() == 0){
+                tutPane.setVisible(true);
+                tutLabel.setText(currentLevel.getDescription());
+            }
         });
 
         nextTurnButton.setOnMouseClicked(e->{
@@ -212,11 +221,26 @@ public class Frame extends Application {
     }
 
     void nextTutorial() {
-        if (currentLevel.getLevelNumber() < 2){
+        if (currentLevel.getLevelNumber() < tutorial.levels.size()-1){
+            tutPane.setVisible(true);
             currentLevel = tutorial.levels.get(currentLevel.getLevelNumber() + 1);
             tutLabel.setText(currentLevel.getDescription());
             currentLevel.getSpace().addItem(currentLevel.getLevelItem());
          }
+        else {
+            tutPane.setVisible(false);
+            introPane.setVisible(true);
+            welcome.setText("Ready to build");
+            introLabel.setText("Now that you have all the tools necessary, you are " +
+                    "\nready to build. Your goal is to make sure that all the " +
+                    "\npeople of Zamoridia have access to Schools, Fire and " +
+                    "\nPolice Stations, Hospitals and Workplaces, before the " +
+                    "\nyear 2030. Keep track of your balance and the time in " +
+                    "\nthe toolbar at the bottom, and use the \"Next\" button " +
+                    "\nto progress one month, collecting an increasing amount " +
+                    "\nof money, based on your progress");
+            introLabel.setStyle("-fx-font-size: 16");
+        }
     }
 
     void displayItems(CitySpace city){
@@ -239,7 +263,13 @@ public class Frame extends Application {
                         CommandTake take = new CommandTake();
                         take.execute(context, "take", new String[]{items.getName()});
                         itemPane.setVisible(false);
-                        nextTutorial();
+                        tutPane.setVisible(false);
+                        itemCollectedPane.setVisible(true);
+                        itemCollectedLabel.setText(currentLevel.getItemDescription());
+                        itemContinueButton.setOnMouseClicked(e -> {
+                            itemCollectedPane.setVisible(false);
+                            nextTutorial();
+                        });
                     });
                 }
             }
