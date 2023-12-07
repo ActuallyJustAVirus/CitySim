@@ -19,8 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Frame extends Application {
@@ -29,9 +27,9 @@ public class Frame extends Application {
     private static Canvas canvas;
     private static AnchorPane overlay;
 
-    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, continueButton, itemContinueButton;
+    private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, okBuild, continueButton, itemContinueButton;
 
-    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel, itemCollectedLabel, welcome;
+    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel, itemCollectedLabel, welcome, buildPrice, brokeText, Win, Lose;
 
     private static Pane infoPane,inventoryPane, buildPane, itemPane, tutPane, introPane, itemCollectedPane;
 
@@ -88,6 +86,9 @@ public class Frame extends Application {
         itemCollectedLabel = (Label) scene.lookup("#itemCollectedLabel");
         welcome = (Label) scene.lookup("#welcome");
 
+        buildPrice = (Label) scene.lookup("#buildPrice");
+        brokeText = (Label) scene.lookup("#brokeText");
+        okBuild = (Button) scene.lookup("#okBuild");
 
         updateLabel();
 
@@ -108,10 +109,31 @@ public class Frame extends Application {
             }
         });
 
-        nextTurnButton.setOnMouseClicked(e->{
+        nextTurnButton.setOnMouseClicked(e -> {
+
+            Win = (Label) scene.lookup("#Win");
+            ArrayList<CitySpace> spaces = new ArrayList<CitySpace>();
+            ArrayList<CitySpace> CitySpace = world.spaces;
+            for (int i = 0; i < CitySpace.size(); i++) {
+                CitySpace city = CitySpace.get(i);
+                if (!city.hasAccessToallinsisutions()) {
+                    break;
+                }
+                if(i==CitySpace.size()-1){
+                    Win.setVisible(true);
+                }
+            }
+
+            Lose = (Label) scene.lookup("#Lose");
+            if (context.tid > context.max) {
+                Lose.setVisible(true);
+
+            }
             context.NextTurn();
             updateLabel();
         });
+
+
 
         infoButton.setOnMouseClicked(f -> {
             if (gameCanvas.build) {
@@ -131,8 +153,7 @@ public class Frame extends Application {
                 gameCanvas.build = false;
                 buildButton.setStyle("-fx-font-weight: bold");
                 gameCanvas.redraw();
-            }
-            else {
+            } else {
                 gameCanvas.checkBuildClicked();
                 buildButton.setStyle("-fx-background-color: yellow; -fx-font-weight: bold");
             }
@@ -163,14 +184,30 @@ public class Frame extends Application {
             gameCanvas.redraw();
         });
 
+        okBuild.setOnMouseClicked(e -> {
+            buildPane.setVisible(false);
+            gameCanvas.redraw();
+        });
+
         overlay.setOnMouseClicked(e -> {
             if (gameCanvas.build){
                 gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
                 for (CitySpace ccas : gameCanvas.highlightedCities) {
                     if (ccas == gameCanvas.selectedBuildCity) {
-                        buildPane.setVisible(true);
-                        buildText.setText("Build a road from "+gameCanvas.selectedCity.getName()+" to "+gameCanvas.selectedBuildCity.getName()+"?");
-                        return;
+
+                        if(context.balance < context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity)){
+                            buildPane.setVisible(true);
+                            brokeText.setVisible(true);
+                            yesBuild.setVisible(false);
+                            noBuild.setVisible(false);
+                            okBuild.setVisible(true);
+                            return;
+                        } else {
+                            buildPane.setVisible(true);
+                            buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
+                             buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
+                            return;
+                        }
                     }
                 }
                 if (gameCanvas.selectedCity != null && gameCanvas.selectedBuildCity == gameCanvas.selectedCity) return;
@@ -281,8 +318,9 @@ public class Frame extends Application {
         return fxmlLoader.load();
     }
 
-    private void updateLabel(){
-        moneyLabel.setText("Balance: " + String.valueOf((context.balance)));
+    private void updateLabel() {
+        moneyLabel.setText("Balance: $" + String.valueOf((context.balance))+" million");
+
         dayLabel.setText(context.getGameTime());
     }
 
