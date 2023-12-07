@@ -211,34 +211,38 @@ public class Frame extends Application {
 
     }
 
-    void nextTutorial(){
-        currentLevel = tutorial.levels.get(currentLevel.getLevelNumber()+1);
-        tutLabel.setText(currentLevel.getDescription());
-        currentLevel.getSpace().addItem(currentLevel.getLevelItem());
+    void nextTutorial() {
+        if (currentLevel.getLevelNumber() < 2){
+            currentLevel = tutorial.levels.get(currentLevel.getLevelNumber() + 1);
+            tutLabel.setText(currentLevel.getDescription());
+            currentLevel.getSpace().addItem(currentLevel.getLevelItem());
+         }
     }
 
     void displayItems(CitySpace city){
-        String items = city.getItems();
-        if (!items.equals("")) {
-            itemPane.setVisible(true);
-            ImageView imageView = (ImageView) itemPane.lookup("#imageView");
-            Label itemNameLabel = (Label) itemPane.lookup("#itemName");
-            Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
-            Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
+        if (city.getItems() != null) {
+            if (currentLevel.getLevelItem().getName().equals(city.getItems().getName())) {
+                Item items = city.getItems();
+                if (items != null) {
+                    itemPane.setVisible(true);
+                    ImageView imageView = (ImageView) itemPane.lookup("#imageView");
+                    Label itemNameLabel = (Label) itemPane.lookup("#itemName");
+                    Label itemDescriptionLabel = (Label) itemPane.lookup("#itemDescription");
+                    Button takeButton = (Button) itemPane.lookup("#collectItemBtn");
 
-            String itemname = items.split("\n")[0];
-            Item item = city.getItem(itemname);
-            itemNameLabel.setText("You found a " + itemname);
-            itemDescriptionLabel.setText(item.getDesc());
-            Image image = new Image(item.image.toURI().toString());
-            imageView.setImage(image);
+                    itemNameLabel.setText("You found a " + items.getName());
+                    itemDescriptionLabel.setText(items.getDesc());
+                    Image image = new Image(items.image.toURI().toString());
+                    imageView.setImage(image);
 
-            takeButton.setOnMouseClicked(g -> {
-                CommandTake take = new CommandTake();
-                take.execute(context, "take", new String[]{itemname});
-                itemPane.setVisible(false);
-                nextTutorial();
-            });
+                    takeButton.setOnMouseClicked(g -> {
+                        CommandTake take = new CommandTake();
+                        take.execute(context, "take", new String[]{items.getName()});
+                        itemPane.setVisible(false);
+                        nextTutorial();
+                    });
+                }
+            }
         }
     }
 

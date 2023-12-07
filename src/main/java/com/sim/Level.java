@@ -4,7 +4,6 @@ public class Level {
     int levelNumber;
     Item item;
     String description;
-    Level level;
     Space space;
 
     public Level(Level level){
