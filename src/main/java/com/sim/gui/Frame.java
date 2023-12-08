@@ -327,7 +327,7 @@ public class Frame extends Application {
     }
 
     private void updateLabel() {
-        moneyText.setText(String.valueOf((context.balance)));
+        moneyText.setText("$" + String.valueOf((context.balance)) + " million");
         moneyText.setFill(Color.GREEN);
 
         dayLabel.setText(context.getGameTime());
