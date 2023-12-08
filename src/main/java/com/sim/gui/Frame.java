@@ -19,8 +19,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import  javafx.scene.text.*;
+
 
 public class Frame extends Application {
 
@@ -326,8 +328,6 @@ public class Frame extends Application {
     }
 
     private void updateLabel() {
-        moneyLabel.setText("Balance: $" + String.valueOf((context.balance))+" million");
-    private void updateLabel(){
         moneyText.setText(String.valueOf((context.balance)));
         moneyText.setFill(Color.GREEN);
 
