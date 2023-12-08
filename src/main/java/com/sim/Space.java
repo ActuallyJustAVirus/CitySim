@@ -37,10 +37,10 @@ public class Space extends Node {
         return null;
     }
 
-    public String getItems() {
-        String items = "";
+    public Item getItems() {
+        Item items = null;
         for (Item item : worldItems) {
-            items += item.getName() + "\n";
+            items = item;
         }
         return items;
     }

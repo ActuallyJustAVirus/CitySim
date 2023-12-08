@@ -4,8 +4,7 @@ import com.sim.Context;
 import com.sim.Item;
 
 public class CommandTake extends BaseCommand {
-    private void addItem() {
-    }
+
     public CommandTake() {
         description = "Pick up the specified item.";
     }

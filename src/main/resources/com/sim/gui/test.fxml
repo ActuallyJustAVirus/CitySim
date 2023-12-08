@@ -3,10 +3,12 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 
+
+<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sim.Controller">
    <children>
       <StackPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -14,6 +16,19 @@
             <Canvas fx:id="canvas" height="420.0" width="800.0" />
             <AnchorPane fx:id="overlay">
                <children>
+
+                  <Pane fx:id="introPane" layoutX="200" layoutY="90" prefHeight="300" prefWidth="400" style="-fx-background-color: white" visible="true">
+                     <children>
+                        <Label fx:id="welcome" layoutX="100" layoutY="20" text="Welcome to Zamoridia," style="-fx-font-size: 18; -fx-font-weight: bold" />
+                        <Label fx:id="introLabel" layoutX="20" layoutY="50" style="-fx-font-size: 15" />
+                        <Button fx:id="continueButton" layoutX="140" layoutY="230" prefWidth="120" prefHeight="50" text="Continue" style="-fx-font-size: 15" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="tutPane" layoutX="480" layoutY="20" prefWidth="300" prefHeight="90" style="-fx-background-color: white" visible="false">
+                     <children>
+                        <Label fx:id="tutLabel" layoutX="20" layoutY="10" style="-fx-font-size: 14" />
+                     </children>
+                  </Pane>
                   <Label fx:id="Win" layoutX="150" layoutY="100" text="you win" style="-fx-font-family: 'Arial'; -fx-font-size: 30; -fx-background-color: lightgray; -fx-padding: 75;" visible="false" />
                   <Label fx:id="Lose" layoutX="150" layoutY="100" text="you lose"  style="-fx-font-family: 'Arial'; -fx-font-size: 30; -fx-background-color: lightgray; -fx-padding: 75;" visible="false" />
                   <Pane fx:id="infoPane" layoutX="200" layoutY="100" prefHeight="200" prefWidth="400" style="-fx-background-color: white" visible="false">
@@ -22,13 +37,19 @@
                         <Button fx:id="closeInfo" layoutX="365" layoutY="10" text="X" />
                      </children>
                   </Pane>
-                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefHeight="200" prefWidth="300" style="-fx-background-color: white" visible="false">
+                  <Pane fx:id="itemCollectedPane" layoutX="200" layoutY="110" prefHeight="150" prefWidth="400" style="-fx-background-color: white" visible="false">
                      <children>
-                        <Label fx:id="itemName" layoutX="100" layoutY="20" text="Information about item" />
+                        <Label fx:id="itemCollectedLabel" layoutX="20" layoutY="20" style="-fx-font-size: 15" />
+                        <Button fx:id="itemContinueButton" layoutX="150" layoutY="110" prefWidth="100" prefHeight="30" text="Continue" style="-fx-font-size: 12" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="itemPane" layoutX="120" layoutY="100" prefWidth="300" prefHeight="235" style="-fx-background-color: white" visible="false">
+                     <children>
+                        <Label fx:id="itemName" layoutX="85" layoutY="10" text="Information about item"/>
                         <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="200.0" layoutX="90.0" layoutY="35" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Label fx:id="itemDescription" layoutX="100" layoutY="150" text="Description" />
-                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="170" text="Collect Item" />
+                        <Label fx:id="itemDescription" layoutX="60" layoutY="160" text="Description"/>
+                        <Button fx:id="collectItemBtn" layoutX="110" layoutY="200" text="Collect Item"/>
                      </children>
                   </Pane>
                   <Pane fx:id="buildPane" layoutX="275" layoutY="150" prefHeight="100" prefWidth="250" style="-fx-background-color: white" visible="false">
@@ -93,3 +114,4 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
+
