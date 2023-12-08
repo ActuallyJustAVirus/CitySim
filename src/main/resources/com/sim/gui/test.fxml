@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 
 
 <?import javafx.scene.text.Text?>
@@ -80,20 +81,27 @@
       </StackPane>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="530.0">
+            <VBox alignment="BOTTOM_LEFT" spacing="20.0" translateX="-20">
                <children>
                   <VBox>
                      <children>
                   <Label fx:id="dayLabel" />
+                        <HBox spacing="10.0">
+                           <children>
+                              <Text text="Balance:" />
+                              <Text fx:id="moneyText" />
+                           </children>
+                        </HBox>
                   <Label fx:id="moneyLabel" />
                      </children>
                   </VBox>
                </children>
-            </HBox>
-            <HBox>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" spacing="30.0">
                <children>
-                  <Button fx:id="inventoryButton" mnemonicParsing="false" style="-fx-font-weight: bold" text="Inventory" />
-                  <Button fx:id="nextturn" mnemonicParsing="false" style="-fx-font-weight: bold" text="Next" />
+                  <Button fx:id="inventoryButton" mnemonicParsing="false" scaleX="1.25" scaleY="1.25" style="-fx-font-weight: bold" text="Inventory" />
+                  <Button fx:id="nextturn" mnemonicParsing="false" scaleX="1.25" scaleY="1.25" style="-fx-font-weight: bold" text="Next Turn" />
                </children>
             </HBox>
          </children>
