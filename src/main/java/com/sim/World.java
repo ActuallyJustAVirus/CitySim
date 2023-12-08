@@ -42,10 +42,8 @@ public class World {
         spaces.get(1).addBothEdges(spaces.get(3).getName(),spaces.get(3),spaces.get(1).getName());
         spaces.get(1).addBothEdges(spaces.get(4).getName(),spaces.get(4),spaces.get(1).getName());
         spaces.get(1).addBothEdges(spaces.get(5).getName(),spaces.get(5),spaces.get(1).getName());
-        spaces.get(2).addBothEdges(spaces.get(4).getName(),spaces.get(4),spaces.get(2).getName());
         spaces.get(2).addBothEdges(spaces.get(6).getName(),spaces.get(6),spaces.get(2).getName());
         spaces.get(3).addBothEdges(spaces.get(4).getName(),spaces.get(4),spaces.get(3).getName());
-        spaces.get(5).addBothEdges(spaces.get(7).getName(),spaces.get(7),spaces.get(5).getName());
         spaces.get(5).addBothEdges(spaces.get(6).getName(),spaces.get(6),spaces.get(5).getName());
         spaces.get(6).addBothEdges(spaces.get(7).getName(),spaces.get(7),spaces.get(6).getName());
 
