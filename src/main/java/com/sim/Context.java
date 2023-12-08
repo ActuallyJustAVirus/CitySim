@@ -58,7 +58,12 @@ public class Context {
         System.out.println("You have " + points + " points in total.");
 
         // calculate balance
-        balance += pointsThisRound * 10 + 100;
+        double moneyThisRound = pointsThisRound / 100 + 5;
+        DecimalFormat Rounded = new DecimalFormat("0.00");
+        String formattedPrice = Rounded.format(moneyThisRound);
+        formattedPrice = formattedPrice.replace(",", ".");
+        moneyThisRound = Double.parseDouble(formattedPrice);
+        balance += moneyThisRound;
 
         System.out.println("Your new balance is " + balance);
 
@@ -89,7 +94,7 @@ public class Context {
     }
 
     public double getPrice(CitySpace city1, CitySpace city2) {
-        double cityDistances = Math.sqrt(Math.pow(city2.getX() - city1.getX(),2) + Math.pow(city2.getY() - city1.getY(),2));
+        double cityDistances = Math.sqrt(Math.pow(city2.getX() - city1.getX(),2) + Math.pow((city2.getY() - city1.getY())*4,2));
         double Price = cityDistances * 2.3;
 
         DecimalFormat Rounded = new DecimalFormat("#.##");

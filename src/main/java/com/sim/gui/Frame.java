@@ -199,7 +199,8 @@ public class Frame extends Application {
                 gameCanvas.selectedBuildCity = gameCanvas.checkClick(e.getX(), e.getY());
                 for (CitySpace ccas : gameCanvas.highlightedCities) {
                     if (ccas == gameCanvas.selectedBuildCity) {
-
+                        buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
+                        buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
                         if(context.balance < context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity)){
                             buildPane.setVisible(true);
                             brokeText.setVisible(true);
@@ -213,8 +214,6 @@ public class Frame extends Application {
                             noBuild.setVisible(true);
                             okBuild.setVisible(false);
                             buildPane.setVisible(true);
-                            buildPrice.setText("Price: $" + context.getPrice(gameCanvas.selectedCity, gameCanvas.selectedBuildCity) + " million");
-                             buildText.setText("Build a road from " + gameCanvas.selectedCity.getName() + " to " + gameCanvas.selectedBuildCity.getName() + "?");
                             return;
                         }
                     }
