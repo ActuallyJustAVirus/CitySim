@@ -153,7 +153,6 @@ public class GameCanvas {
                     return selectedCity;
                 }
             }
-
         }
 
         selectedCity = null;

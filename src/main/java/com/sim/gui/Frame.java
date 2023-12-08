@@ -32,7 +32,7 @@ public class Frame extends Application {
 
     private static Button infoButton, buildButton, closeInfo, inventoryButton, closeInventory, nextTurnButton, yesBuild, noBuild, okBuild, continueButton, itemContinueButton;
 
-    private static Label infoText, tutLabel, inventoryLabel, buildText, moneyLabel, dayLabel, introLabel, itemCollectedLabel, welcome, buildPrice, brokeText, Win, Lose;
+    private static Label infoText, tutLabel, inventoryLabel, buildText, dayLabel, introLabel, itemCollectedLabel, welcome, buildPrice, brokeText, Win, Lose;
 
     private static Pane infoPane,inventoryPane, buildPane, itemPane, tutPane, introPane, itemCollectedPane;
 
@@ -225,10 +225,14 @@ public class Frame extends Application {
                 buildPane.setVisible(false);
             } else {
                 gameCanvas.selectedCity = gameCanvas.checkClick(e.getX(),e.getY());
-                context.transition("map"); //TODO: Fix "You are confused, and walk in a circle looking for 'map'."
-                if (gameCanvas.checkClick(e.getX(),e.getY()) != null){
-                    citySelect(gameCanvas.checkClick(e.getX(),e.getY()));
+                context.transition("map");
+                if (gameCanvas.selectedCity != null){
+                    citySelect(gameCanvas.selectedCity);
                 }
+            }
+            if (gameCanvas.selectedCity == null){
+                infoButton.setVisible(false);
+                buildButton.setVisible(false);
             }
         });
         gameCanvas.redraw();
