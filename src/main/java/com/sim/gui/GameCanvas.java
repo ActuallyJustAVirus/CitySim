@@ -21,17 +21,10 @@ public class GameCanvas {
     private Canvas canvas;
     private World world;
     CitySpace selectedCity;
-
     CitySpace selectedBuildCity;
-
     ArrayList<CitySpace> highlightedCities = new ArrayList<>();
-
     CommandBuild builder;
-
-
-
     boolean build;
-
     Context context;
 
     Image city = new Image("file:src/main/resources/com/sim/gui/village.png");
